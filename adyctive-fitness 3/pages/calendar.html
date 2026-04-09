@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar – Adyctive Fitness</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .calendar-note { background:var(--light-soft); border:1px solid var(--light-border); border-radius:var(--radius-lg); padding:24px 28px; margin-bottom:32px; display:flex; align-items:flex-start; gap:16px; }
+    .calendar-note p { font-size:14px; color:var(--light-muted); line-height:1.7; }
+    .calendar-note p strong { color:var(--light-text); }
+    .calendar-placeholder { background:var(--light-soft); border:2px dashed rgba(174,50,254,0.3); border-radius:var(--radius-lg); padding:80px 40px; text-align:center; }
+    .calendar-placeholder .icon { font-size:48px; margin-bottom:16px; }
+    .calendar-placeholder h3 { font-family:var(--font-display); font-size:28px; color:var(--light-text); margin-bottom:10px; }
+    .calendar-placeholder p { font-size:14px; color:var(--light-muted); max-width:480px; margin:0 auto 24px; line-height:1.7; }
+    .embed-code { background:rgba(174,50,254,0.06); border:1px solid rgba(174,50,254,0.15); border-radius:var(--radius); padding:16px 20px; font-family:monospace; font-size:12px; color:var(--purple); text-align:left; margin-top:20px; }
+
+    .week-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:36px; }
+    .day-label { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--light-muted); margin-bottom:10px; text-align:center; padding-bottom:8px; border-bottom:1px solid var(--light-border); }
+    .day-event { background:var(--white); border:1px solid var(--card-border); border-radius:8px; padding:12px; margin-bottom:8px; }
+    .day-event.zumba    { border-left:3px solid var(--purple); }
+    .day-event.bootcamp { border-left:3px solid #60a5fa; }
+    .day-event.stretch  { border-left:3px solid #34d399; }
+    .day-event .etime { font-size:11px; color:var(--light-muted); margin-bottom:4px; }
+    .day-event .ename { font-size:12px; font-weight:500; color:var(--light-text); line-height:1.4; }
+    .legend { display:flex; gap:20px; margin-top:24px; flex-wrap:wrap; }
+    .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--light-muted); }
+    .legend-dot { width:8px; height:8px; border-radius:50%; }
+
+    .booking-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:40px; }
+    .booking-card { background:var(--white); border:1px solid var(--card-border); border-radius:var(--radius-lg); padding:32px 28px; }
+    .booking-card h3 { font-family:var(--font-display); font-size:24px; color:var(--light-text); margin-bottom:8px; }
+    .booking-card p  { font-size:14px; color:var(--light-muted); margin-bottom:20px; line-height:1.7; }
+
+    @media(max-width:900px){ .week-grid{grid-template-columns:1fr 1fr}; .booking-grid{grid-template-columns:1fr} }
+    @media(max-width:560px){ .week-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:40px;width:auto;"></a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="rates.html">Rates</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="calendar.html" class="active">Calendar</a>
+      <a href="get-started.html" class="nav-cta">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="tag">Schedule</div>
+    <h1>CLASS CALENDAR</h1>
+    <p>Early risers only — classes run weekdays at 5:30am. Check below and book your spot.</p>
+  </div>
+</header>
+
+<!-- CALENDAR EMBED (white) -->
+<section class="section" style="background:var(--light);">
+  <div class="container">
+    <div class="calendar-note">
+      <div style="font-size:24px;">📅</div>
+      <p><strong>Add your booking calendar here.</strong> Paste the embed code from your booking tool (Calendly, Acuity, Google Calendar, etc.) into the placeholder below. Just drop the <code style="font-size:12px;color:var(--purple);">&lt;iframe&gt;</code> code in and you're done.</p>
+    </div>
+    <div class="calendar-placeholder">
+      <div class="icon">🗓</div>
+      <h3>Live calendar goes here</h3>
+      <p>Replace this block with your calendar embed. Calendly's free tier gives you one event type and an easy copy-paste iframe.</p>
+      <a href="https://calendly.com" target="_blank" class="btn btn-primary">Try Calendly (free) →</a>
+      <div class="embed-code">
+        &lt;!-- Paste your embed code here --&gt;<br>
+        &lt;!-- e.g. &lt;iframe src="https://calendly.com/yourname" ...&gt;&lt;/iframe&gt; --&gt;
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY SCHEDULE (soft) -->
+<section class="section" style="background:var(--light-soft);">
+  <div class="container">
+    <div class="tag">Weekly overview</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,48px);color:var(--light-text);margin-bottom:10px;">Typical week</h2>
+    <p style="color:var(--light-muted);font-size:15px;">Monday–Friday, 5:30–6:30am. Schedule may vary — check the calendar above.</p>
+    <div class="week-grid">
+      <div><div class="day-label">Monday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Strength &amp; Cardio</div></div></div>
+      <div><div class="day-label">Tuesday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Crossfit-style</div></div></div>
+      <div><div class="day-label">Wednesday</div><div class="day-event zumba"><div class="etime">Varies</div><div class="ename">Zumba® / Stretch n Flex</div></div></div>
+      <div><div class="day-label">Thursday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Large Circuit</div></div></div>
+      <div><div class="day-label">Friday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Tabata</div></div></div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#60a5fa;"></span> Boot camp / Strength</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--purple);"></span> Zumba® / Dance</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#34d399;"></span> Stretch n Flex</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING (white) -->
+<section class="section" style="background:var(--light);">
+  <div class="container">
+    <div class="tag">Book a class</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,48px);color:var(--light-text);margin-bottom:10px;">How to join</h2>
+    <p style="color:var(--light-muted);font-size:15px;max-width:540px;">Two ways to train with Naarah — pick what works for you.</p>
+    <div class="booking-grid">
+      <div class="booking-card">
+        <h3>In-person · Southern MD</h3>
+        <p>Join Naarah and the Adyctive community in person. Contact us for the current location after signing up.</p>
+        <a href="get-started.html" class="btn btn-primary">Get location details</a>
+      </div>
+      <div class="booking-card">
+        <h3>Online · Zoom anywhere</h3>
+        <p>All classes are available live via Zoom. Get your link when you sign up and join from anywhere in the world.</p>
+        <a href="get-started.html" class="btn btn-primary">Get your Zoom link</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:36px;width:auto;"></a>
+        <p>Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="about.html">About Naarah</a><a href="rates.html">Rates &amp; Services</a>
+        <a href="nutrition.html">Nutrition</a><a href="calendar.html">Class Calendar</a>
+        <a href="get-started.html">Get Started</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/adyctivefitness/" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/adyctivefitness/" target="_blank">Facebook</a>
+        <a href="https://www.youtube.com/@adyctivefitness" target="_blank">YouTube</a>
+        <a href="mailto:info@adyctivefitness.com">Email us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Adyctive Fitness LLC · Southern Maryland</p>
+      <p>#GetAdycted 💙</p>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
