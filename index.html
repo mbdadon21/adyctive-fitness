@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adyctive Fitness – Fierce Fitness with a Flair</title>
+  <meta name="description" content="AFAA® certified personal trainer and Zumba® instructor based in Southern MD. In-person and online classes.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── HERO (light bg, dark text card) ── */
+    .hero {
+      background: var(--light-soft);
+      padding: 64px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -60px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(174,50,254,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 48px;
+      min-height: 76vh;
+    }
+    /* Dark card wrapping the text */
+    .hero-text-card {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 48px 44px;
+      position: relative;
+      box-shadow: 0 8px 48px rgba(174,50,254,0.18);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 20px;
+    }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--purple); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(60px, 7vw, 92px);
+      line-height: 0.95; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .hero h1 .accent { color: var(--purple); }
+    .hero-sub { font-size: 15px; color: var(--dark-muted); line-height: 1.75; margin-bottom: 32px; }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .hero-visual {
+      height: 540px; border-radius: var(--radius-lg); overflow: hidden;
+      border: 3px solid var(--white);
+      box-shadow: 0 8px 40px rgba(174,50,254,0.15);
+      position: relative;
+    }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-badge {
+      position: absolute; bottom: 20px; left: 20px;
+      background: rgba(10,10,10,0.88); backdrop-filter: blur(10px);
+      border: 1px solid rgba(174,50,254,0.3); border-radius: var(--radius);
+      padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+    }
+    .hero-badge-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.6); }
+    .hero-badge-text { font-size: 13px; font-weight: 500; color: var(--white); }
+    .hero-badge-sub  { font-size: 11px; color: var(--dark-muted); }
+
+    /* ── ABOUT (light) ── */
+    .about-preview {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .about-img {
+      height: 460px; border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid var(--light-border);
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text h2 {
+      font-family: var(--font-display); font-size: clamp(36px, 5vw, 52px);
+      line-height: 1.05; color: var(--light-text); margin-bottom: 20px;
+    }
+    .about-text p { font-size: 15px; color: var(--light-muted); margin-bottom: 14px; }
+    .credentials { margin: 24px 0; display: flex; flex-direction: column; gap: 8px; }
+    .cred-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--light-muted); }
+    .cred-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); flex-shrink: 0; }
+
+    /* ── CLASSES (soft lavender) ── */
+    .classes-section { background: var(--light-soft); }
+    .classes-header { text-align: center; margin-bottom: 48px; }
+    .classes-header h2 { font-family: var(--font-display); font-size: clamp(38px,5vw,60px); color: var(--light-text); margin-bottom: 10px; }
+    .classes-header p  { font-size: 15px; color: var(--light-muted); }
+    .class-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .class-card {
+      background: var(--white); border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg); padding: 32px 24px;
+      transition: border-color .25s, transform .2s, box-shadow .2s;
+    }
+    .class-card:hover { border-color: rgba(174,50,254,0.4); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(174,50,254,0.10); }
+    .class-card-icon {
+      width: 52px; height: 52px; border-radius: 12px; background: var(--purple-dim);
+      display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px;
+    }
+    .class-card h3 { font-family: var(--font-display); font-size: 24px; color: var(--light-text); letter-spacing: 0.5px; margin-bottom: 10px; }
+    .class-card p  { font-size: 13px; color: var(--light-muted); line-height: 1.7; margin-bottom: 18px; }
+    .class-tag {
+      display: inline-block; font-size: 11px; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--purple); background: var(--purple-dim);
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* ── TESTIMONIALS (white) ── */
+    .testi-header { margin-bottom: 40px; }
+    .testi-header h2 { font-family: var(--font-display); font-size: clamp(38px,5vw,56px); color: var(--light-text); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+    /* ── CTA BAND (dark purple) ── */
+    .cta-band {
+      margin: 0 28px 80px;
+      background: var(--dark);
+      border: 1px solid rgba(174,50,254,0.25);
+      border-radius: var(--radius-lg);
+      padding: 56px 52px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(174,50,254,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-band h2 {
+      font-family: var(--font-display); font-size: clamp(32px,4vw,48px);
+      line-height: 1.05; color: var(--white); margin-bottom: 8px; position: relative;
+    }
+    .cta-band p { font-size: 15px; color: var(--dark-muted); position: relative; }
+    .cta-band-btn {
+      background: var(--purple); color: var(--white);
+      padding: 14px 36px; border-radius: 7px; font-size: 15px; font-weight: 500;
+      white-space: nowrap; flex-shrink: 0; transition: opacity .2s; position: relative;
+    }
+    .cta-band-btn:hover { opacity: 0.9; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; min-height: auto; gap: 32px; }
+      .hero-text-card { padding: 32px 28px; }
+      .hero-visual { height: 320px; }
+      .about-preview { grid-template-columns: 1fr; }
+      .about-img { height: 280px; }
+      .class-cards { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .cta-band { flex-direction: column; text-align: center; margin: 0 16px 60px; padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:40px;width:auto;"></a>
+    <div class="nav-links">
+      <a href="pages/about.html">About</a>
+      <a href="pages/rates.html">Rates</a>
+      <a href="pages/nutrition.html">Nutrition</a>
+      <a href="pages/calendar.html">Calendar</a>
+      <a href="pages/get-started.html" class="nav-cta">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO (light bg, dark card) -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text-card">
+        <div class="hero-eyebrow fade-up">Southern MD · In-person &amp; online</div>
+        <h1 class="fade-up-2">FIERCE<br>FITNESS<br><span class="accent">WITH FLAIR.</span></h1>
+        <p class="hero-sub fade-up-3">Dance your way to the body you want. Zumba® · Strong Nation® · Mixxedfit® — where every workout feels like a party.</p>
+        <div class="hero-actions fade-up-3">
+          <a href="pages/get-started.html" class="btn btn-primary" style="background:var(--purple);color:#fff;box-shadow:0 4px 20px rgba(174,50,254,0.4);">Get started today</a>
+          <a href="pages/rates.html" class="btn btn-ghost" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25);">View rates →</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-2.svg" alt="Adyctive Fitness">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <div>
+            <div class="hero-badge-text">Classes available now</div>
+            <div class="hero-badge-sub">In-person &amp; online via Zoom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR (purple) -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">13+</div><div class="stat-label">Years instructing</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Class formats</div></div>
+  <div class="stat-item"><div class="stat-num">60/40</div><div class="stat-label">Cardio / strength split</div></div>
+  <div class="stat-item"><div class="stat-num">AFAA®</div><div class="stat-label">Certified trainer &amp; instructor</div></div>
+</div>
+
+<!-- ABOUT PREVIEW (white) -->
+<section class="section" style="background:var(--light);">
+  <div class="container">
+    <div class="about-preview">
+      <div class="about-img">
+        <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-1.svg" alt="Naarah Crawley">
+      </div>
+      <div class="about-text">
+        <div class="tag">Meet your instructor</div>
+        <h2>Hi, I'm Naarah — but you can call me Nay.</h2>
+        <p>I'm the owner and operator of Adyctive Fitness, LLC, based in Southern Maryland. Fitness found me through dance over a decade ago, and I've never looked back.</p>
+        <p>My goal is simple: help you move your body, reduce stress, and become completely <em>adycted</em> to a healthier version of yourself.</p>
+        <div class="credentials">
+          <div class="cred-item"><span class="cred-dot"></span> AFAA® Certified Personal Trainer</div>
+          <div class="cred-item"><span class="cred-dot"></span> AFAA® Certified Group Fitness Instructor</div>
+          <div class="cred-item"><span class="cred-dot"></span> Licensed Zumba®, Zumba® Gold, Zumba® Toning &amp; Strong by Zumba® Pro</div>
+          <div class="cred-item"><span class="cred-dot"></span> CPR/AED &amp; First Aid Certified · Insured</div>
+        </div>
+        <a href="pages/about.html" class="btn btn-primary">My full story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES (soft lavender) -->
+<section class="section classes-section">
+  <div class="container">
+    <div class="classes-header">
+      <div class="tag">What we offer</div>
+      <h2>Classes for every body</h2>
+      <p>No two workouts are ever the same. Circuit, crossfit-style, tabata, obstacle, and dance — that's what keeps you coming back.</p>
+    </div>
+    <div class="class-cards">
+      <div class="class-card">
+        <div class="class-card-icon">💃</div>
+        <h3>Zumba® Fitness</h3>
+        <p>Salsa, merengue, reggaeton, cumbia, hip hop — a full-body party that torches serious calories without feeling like work.</p>
+        <span class="class-tag">$7 per class</span>
+      </div>
+      <div class="class-card">
+        <div class="class-card-icon">💪</div>
+        <h3>Strong Nation® &amp; Boot Camp</h3>
+        <p>Cardio-strength fusion with a 60/40 split. Tone up without bulking. Dynamic movements, great music, zero boredom.</p>
+        <span class="class-tag">From $15/pp</span>
+      </div>
+      <div class="class-card">
+        <div class="class-card-icon">🧘🏾‍♀️</div>
+        <h3>Stretch n Flex</h3>
+        <p>Body-weight and light resistance mat work. Get bendier, get stronger, and bring your resistance bands.</p>
+        <span class="class-tag">$7 per class</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="pages/rates.html" class="btn-ghost-dark btn" style="display:inline-block;">See all rates &amp; services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (white) -->
+<section class="section" style="background:var(--light);">
+  <div class="container">
+    <div class="testi-header">
+      <div class="tag">Reviews</div>
+      <h2 class="testi-header">What people are saying</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Her routines will have you feeling like you're at a party — all while getting in a great workout. I highly recommend Adyctive Fitness!"</p>
+        <div class="testi-author">T Monique G.</div>
+        <div class="testi-role">Solopreneur</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"She is truly the perfect blend of everything a Zumba instructor should be — patient, kind, energetic, and challenging all at once."</p>
+        <div class="testi-author">Anastasia F.</div>
+        <div class="testi-role">Entrepreneur</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"She supported me throughout my entire weight loss journey. She connects with every student personally and makes them feel special."</p>
+        <div class="testi-author">Uzma K.</div>
+        <div class="testi-role">Fellow Zumba® Instructor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div style="background:var(--light-soft);padding:0 0 80px;">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>Nothing to lose.<br>So much to gain.</h2>
+        <p>Join Adyctive Fitness — in person in Southern MD or online from anywhere.</p>
+      </div>
+      <a href="pages/get-started.html" class="cta-band-btn">Get started today</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:36px;width:auto;"></a>
+        <p>Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="pages/about.html">About Naarah</a>
+        <a href="pages/rates.html">Rates &amp; Services</a>
+        <a href="pages/nutrition.html">Nutrition</a>
+        <a href="pages/calendar.html">Class Calendar</a>
+        <a href="pages/get-started.html">Get Started</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/adyctivefitness/" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/adyctivefitness/" target="_blank">Facebook</a>
+        <a href="https://www.youtube.com/@adyctivefitness" target="_blank">YouTube</a>
+        <a href="mailto:info@adyctivefitness.com">Email us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Adyctive Fitness LLC · Southern Maryland</p>
+      <p>#GetAdycted 💙</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
