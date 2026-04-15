@@ -37,26 +37,41 @@
         rgba(10,10,10,0.10) 100%
       );
     }
-    /* card overlay layer — below controls */
+    /* card overlay layer */
     .af-slide-body {
-      position:absolute; inset:0; z-index:3;
-      display:flex; align-items:center;
+      position: absolute;
+      inset: 0;
+      z-index: 3;
       pointer-events: none;
     }
     /* re-enable pointer events on the card itself */
     .af-slide-body .af-hero-card,
     .af-slide-body .af-hero-card * { pointer-events: auto; }
 
+    /* The card is absolutely positioned inside the slide.
+       Position is controlled by adding one class to .af-hero-card:
+         .card-left   → left side  (default)
+         .card-right  → right side
+         .card-center → horizontally centred
+
+       To change position on a slide, change the class on
+       that slide's .af-hero-card element. */
     .af-hero-card {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       background: rgba(10,10,10,0.78);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(174,50,254,0.25);
       border-radius: 16px;
       padding: 40px 44px;
-      max-width: 500px;
-      width: 100%;
+      width: 500px;
+      max-width: calc(100% - 48px);
     }
+    .af-hero-card.card-left   { left: max(28px, calc((100% - 1080px) / 2 + 28px)); }
+    .af-hero-card.card-right  { right: max(28px, calc((100% - 1080px) / 2 + 28px)); }
+    .af-hero-card.card-center { left: 50%; transform: translate(-50%, -50%); }
     .af-hero-h1 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(52px,6.5vw,80px);
@@ -90,11 +105,20 @@
     }
     .af-carousel .carousel-indicators .active { background:var(--purple); }
 
-    @media (max-width:991px) { .af-carousel { height:580px; } .af-hero-card { padding:30px 26px; } }
+    @media (max-width:991px) {
+      .af-carousel { height:580px; }
+      .af-hero-card { padding:30px 26px; width:420px; }
+    }
     @media (max-width:767px) {
-      .af-carousel { height:500px; }
-      .af-hero-card { max-width:100%; padding:24px 20px; }
-      .af-carousel .carousel-item[data-card-align="right"] .af-slide-body { justify-content:flex-start; }
+      .af-carousel { height:520px; }
+      .af-hero-card { width: calc(100% - 48px); padding:24px 20px; }
+      /* on mobile all cards go left */
+      .af-hero-card.card-right,
+      .af-hero-card.card-center {
+        left: 24px !important;
+        right: auto !important;
+        transform: translateY(-50%) !important;
+      }
     }
   </style>
 </head>
@@ -124,16 +148,14 @@
 <!-- ══════════════════════════════════════════════
      BOOTSTRAP CAROUSEL HERO
      ──────────────────────────────────────────────
-     To reposition the text card on any slide,
-     change the justify-content value on that
-     slide's .af-slide-body inline style:
+     To reposition the card on any slide, change
+     the class on that slide's .af-hero-card:
 
-       style="justify-content:flex-start;"  → card LEFT
-       style="justify-content:flex-end;"    → card RIGHT
-       style="justify-content:center;"      → card CENTRE
+       class="af-hero-card card-left"    → LEFT
+       class="af-hero-card card-right"   → RIGHT
+       class="af-hero-card card-center"  → CENTRE
 
-     Also update the .container's d-flex class
-     to match (d-flex justify-content-end, etc.)
+     That's the only change needed — one class.
      ══════════════════════════════════════════════ -->
 <div id="heroCarousel" class="carousel slide af-carousel" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -146,54 +168,48 @@
 
   <div class="carousel-inner">
 
-    <!-- ── SLIDE 1 ── card LEFT ── change justify-content to flex-end or center to reposition -->
+    <!-- ── SLIDE 1 — card-left / card-right / card-center ── -->
     <div class="carousel-item active">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-2.svg" alt="Adyctive Fitness class">
-      <div class="af-slide-body" style="justify-content:flex-center;">
-        <div class="container">
-          <div class="af-hero-card">
-            <div class="af-eyebrow">Southern MD · In-person &amp; online</div>
-            <h1 class="af-hero-h1">FIERCE<br>FITNESS<br><span class="accent">WITH FLAIR.</span></h1>
-            <p class="af-hero-sub">Dance your way to the body you want. Zumba® · Strong Nation® · Mixxedfit® — where every workout feels like a party.</p>
-            <div class="d-flex flex-wrap gap-3">
-              <a href="pages/get-started.html" class="btn-af-primary">Get started today</a>
-              <a href="pages/rates.html" class="btn-af-ghost">View rates →</a>
-            </div>
+      <div class="af-slide-body">
+        <div class="af-hero-card card-left">
+          <div class="af-eyebrow">Southern MD · In-person &amp; online</div>
+          <h1 class="af-hero-h1">FIERCE<br>FITNESS<br><span class="accent">WITH FLAIR.</span></h1>
+          <p class="af-hero-sub">Dance your way to the body you want. Zumba® · Strong Nation® · Mixxedfit® — where every workout feels like a party.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="pages/get-started.html" class="btn-af-primary">Get started today</a>
+            <a href="pages/rates.html" class="btn-af-ghost">View rates →</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── SLIDE 2 ── card RIGHT ── change justify-content to flex-start or center to reposition -->
+    <!-- ── SLIDE 2 — card-left / card-right / card-center ── -->
     <div class="carousel-item">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-1.svg" alt="Zumba class">
-      <div class="af-slide-body" style="justify-content:flex-end;">
-        <div class="container d-flex justify-content-end">
-          <div class="af-hero-card">
-            <div class="af-eyebrow">60% Cardio · 40% Strength</div>
-            <h1 class="af-hero-h1">GET<br>ADYCTED<br><span class="accent">TO FITNESS.</span></h1>
-            <p class="af-hero-sub">No two workouts are ever the same. Circuit, crossfit-style, tabata, obstacle, and dance fitness — that's what keeps you coming back.</p>
-            <div class="d-flex flex-wrap gap-3">
-              <a href="pages/rates.html" class="btn-af-primary">See all classes</a>
-              <a href="pages/about.html" class="btn-af-ghost">Meet Naarah →</a>
-            </div>
+      <div class="af-slide-body">
+        <div class="af-hero-card card-right">
+          <div class="af-eyebrow">60% Cardio · 40% Strength</div>
+          <h1 class="af-hero-h1">GET<br>ADYCTED<br><span class="accent">TO FITNESS.</span></h1>
+          <p class="af-hero-sub">No two workouts are ever the same. Circuit, crossfit-style, tabata, obstacle, and dance fitness — that's what keeps you coming back.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="pages/rates.html" class="btn-af-primary">See all classes</a>
+            <a href="pages/about.html" class="btn-af-ghost">Meet Naarah →</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── SLIDE 3 ── card CENTER ── change justify-content to flex-start or flex-end to reposition -->
+    <!-- ── SLIDE 3 — card-left / card-right / card-center ── -->
     <div class="carousel-item">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-3.svg" alt="Dance fitness">
-      <div class="af-slide-body" style="justify-content:center;">
-        <div class="container d-flex justify-content-center">
-          <div class="af-hero-card text-center">
-            <div class="af-eyebrow justify-content-center">Nothing to lose</div>
-            <h1 class="af-hero-h1">SO MUCH<br><span class="accent">TO GAIN.</span></h1>
-            <p class="af-hero-sub">In-person in Southern MD or online via Zoom — join the Adyctive Fitness community today.</p>
-            <div class="d-flex flex-wrap gap-3 justify-content-center">
-              <a href="pages/get-started.html" class="btn-af-primary">Sign up now</a>
-            </div>
+      <div class="af-slide-body">
+        <div class="af-hero-card card-center text-center">
+          <div class="af-eyebrow justify-content-center">Nothing to lose</div>
+          <h1 class="af-hero-h1">SO MUCH<br><span class="accent">TO GAIN.</span></h1>
+          <p class="af-hero-sub">In-person in Southern MD or online via Zoom — join the Adyctive Fitness community today.</p>
+          <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="pages/get-started.html" class="btn-af-primary">Sign up now</a>
           </div>
         </div>
       </div>
