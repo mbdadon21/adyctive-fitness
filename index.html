@@ -41,15 +41,16 @@
     .af-slide-body {
       position:absolute; inset:0; z-index:3;
       display:flex; align-items:center;
-      pointer-events: none; /* let clicks pass through to controls behind */
+      pointer-events: none;
     }
-    /* re-enable pointer events on the card itself so buttons inside work */
+    /* re-enable pointer events on the card itself */
     .af-slide-body .af-hero-card,
     .af-slide-body .af-hero-card * { pointer-events: auto; }
-    /* positional helpers — set via data-card-align on carousel-item */
-    .af-carousel .carousel-item[data-card-align="left"]   .af-slide-body { justify-content:flex-start; }
-    .af-carousel .carousel-item[data-card-align="right"]  .af-slide-body { justify-content:flex-end; }
-    .af-carousel .carousel-item[data-card-align="center"] .af-slide-body { justify-content:center; }
+
+    /* Alignment classes applied to .af-slide-body by JS based on data-card-align */
+    .af-slide-body.align-left   { justify-content: flex-start; }
+    .af-slide-body.align-right  { justify-content: flex-end; }
+    .af-slide-body.align-center { justify-content: center; }
 
     .af-hero-card {
       background: rgba(10,10,10,0.78);
@@ -190,7 +191,7 @@
     <div class="carousel-item" data-card-align="center">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-3.svg" alt="Dance fitness">
       <div class="af-slide-body">
-        <div class="container d-flex justify-content-center">
+        <div class="container">
           <div class="af-hero-card text-center">
             <div class="af-eyebrow justify-content-center">Nothing to lose</div>
             <h1 class="af-hero-h1">SO MUCH<br><span class="accent">TO GAIN.</span></h1>
@@ -389,10 +390,24 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
+  // Active nav link
   const page = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.af-nav .nav-link').forEach(a => {
     if (a.getAttribute('href') === page) a.classList.add('active');
   });
+
+  // Apply card alignment from data-card-align on each carousel-item
+  // This runs on load and whenever the slide changes
+  function applyCardAlign() {
+    document.querySelectorAll('#heroCarousel .carousel-item').forEach(item => {
+      const align = item.getAttribute('data-card-align') || 'left';
+      const body  = item.querySelector('.af-slide-body');
+      if (!body) return;
+      body.classList.remove('align-left', 'align-right', 'align-center');
+      body.classList.add('align-' + align);
+    });
+  }
+  applyCardAlign(); // run on page load
 </script>
 </body>
 </html>
