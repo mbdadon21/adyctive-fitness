@@ -47,11 +47,6 @@
     .af-slide-body .af-hero-card,
     .af-slide-body .af-hero-card * { pointer-events: auto; }
 
-    /* Alignment classes applied to .af-slide-body by JS based on data-card-align */
-    .af-slide-body.align-left   { justify-content: flex-start; }
-    .af-slide-body.align-right  { justify-content: flex-end; }
-    .af-slide-body.align-center { justify-content: center; }
-
     .af-hero-card {
       background: rgba(10,10,10,0.78);
       backdrop-filter: blur(14px);
@@ -129,16 +124,16 @@
 <!-- ══════════════════════════════════════════════
      BOOTSTRAP CAROUSEL HERO
      ──────────────────────────────────────────────
-     To add/change slides:
-       1. Copy a <div class="carousel-item"> block
-       2. Change the <img src="..."> to your image
-       3. Change data-card-align to "left", "right", or "center"
-       4. Edit the h1, subtitle, and button text
+     To reposition the text card on any slide,
+     change the justify-content value on that
+     slide's .af-slide-body inline style:
 
-     Card position options per slide:
-       data-card-align="left"    card floats left
-       data-card-align="right"   card floats right
-       data-card-align="center"  card centred
+       style="justify-content:flex-start;"  → card LEFT
+       style="justify-content:flex-end;"    → card RIGHT
+       style="justify-content:center;"      → card CENTRE
+
+     Also update the .container's d-flex class
+     to match (d-flex justify-content-end, etc.)
      ══════════════════════════════════════════════ -->
 <div id="heroCarousel" class="carousel slide af-carousel" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -151,10 +146,10 @@
 
   <div class="carousel-inner">
 
-    <!-- ── SLIDE 1 — card CENTER ── -->
-    <div class="carousel-item active" data-card-align="center">
+    <!-- ── SLIDE 1 ── card LEFT ── change justify-content to flex-end or center to reposition -->
+    <div class="carousel-item active">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-2.svg" alt="Adyctive Fitness class">
-      <div class="af-slide-body">
+      <div class="af-slide-body" style="justify-content:flex-center;">
         <div class="container">
           <div class="af-hero-card">
             <div class="af-eyebrow">Southern MD · In-person &amp; online</div>
@@ -169,11 +164,11 @@
       </div>
     </div>
 
-    <!-- ── SLIDE 2 — card RIGHT ── -->
-    <div class="carousel-item" data-card-align="right">
+    <!-- ── SLIDE 2 ── card RIGHT ── change justify-content to flex-start or center to reposition -->
+    <div class="carousel-item">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-1.svg" alt="Zumba class">
-      <div class="af-slide-body">
-        <div class="container">
+      <div class="af-slide-body" style="justify-content:flex-end;">
+        <div class="container d-flex justify-content-end">
           <div class="af-hero-card">
             <div class="af-eyebrow">60% Cardio · 40% Strength</div>
             <h1 class="af-hero-h1">GET<br>ADYCTED<br><span class="accent">TO FITNESS.</span></h1>
@@ -187,11 +182,11 @@
       </div>
     </div>
 
-    <!-- ── SLIDE 3 — card CENTER ── -->
-    <div class="carousel-item" data-card-align="center">
+    <!-- ── SLIDE 3 ── card CENTER ── change justify-content to flex-start or flex-end to reposition -->
+    <div class="carousel-item">
       <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-3.svg" alt="Dance fitness">
-      <div class="af-slide-body">
-        <div class="container">
+      <div class="af-slide-body" style="justify-content:center;">
+        <div class="container d-flex justify-content-center">
           <div class="af-hero-card text-center">
             <div class="af-eyebrow justify-content-center">Nothing to lose</div>
             <h1 class="af-hero-h1">SO MUCH<br><span class="accent">TO GAIN.</span></h1>
@@ -390,24 +385,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Active nav link
   const page = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.af-nav .nav-link').forEach(a => {
     if (a.getAttribute('href') === page) a.classList.add('active');
   });
-
-  // Apply card alignment from data-card-align on each carousel-item
-  // This runs on load and whenever the slide changes
-  function applyCardAlign() {
-    document.querySelectorAll('#heroCarousel .carousel-item').forEach(item => {
-      const align = item.getAttribute('data-card-align') || 'left';
-      const body  = item.querySelector('.af-slide-body');
-      if (!body) return;
-      body.classList.remove('align-left', 'align-right', 'align-center');
-      body.classList.add('align-' + align);
-    });
-  }
-  applyCardAlign(); // run on page load
 </script>
 </body>
 </html>
