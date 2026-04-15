@@ -5,365 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adyctive Fitness – Fierce Fitness with a Flair</title>
   <meta name="description" content="AFAA® certified personal trainer and Zumba® instructor based in Southern MD.">
-
-  <!-- Bootstrap 5 CSS — single reliable CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="css/af-styles.css">
   <style>
-    /* ── TOKENS ── */
-    :root {
-      --purple:     #ae32fe;
-      --purple-dim: rgba(174,50,254,0.11);
-      --dark:       #0a0a0a;
-      --white:      #ffffff;
-      --soft:       #f5f0ff;
-      --text:       #1a1a2e;
-      --muted:      #6b6880;
-      --border:     #e0d6f5;
-      --card-b:     #e8e0f5;
-    }
-    html, body {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 17px;
-      color: var(--text);
-      background: #fff;
-    }
+    /* ── CAROUSEL HERO ── */
+    /*
+      Each slide has a data-card-align attribute:
+        "left"   → card on the left  (default)
+        "right"  → card on the right
+        "center" → card centred
 
-    /* ── NAV ── */
-    .af-nav {
-      background: rgba(10,10,10,0.96) !important;
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      min-height: 66px;
+      Change data-card-align on any .carousel-item to reposition
+      the text card without touching any other code.
+    */
+    .af-carousel { position:relative; height:680px; }
+    .af-carousel .carousel-inner,
+    .af-carousel .carousel-item  { height:100%; }
+    .af-carousel .carousel-item img {
+      width:100%; height:100%;
+      object-fit:cover; object-position:center top;
     }
-    .af-nav .navbar-brand img { height: 40px; }
-    .af-nav .nav-link {
-      font-size: 15px;
-      color: rgba(255,255,255,0.65) !important;
-      padding: 8px 15px !important;
-      border-radius: 6px;
-      transition: background .18s, color .18s;
-    }
-    .af-nav .nav-link:hover,
-    .af-nav .nav-link.active {
-      background: var(--purple) !important;
-      color: #fff !important;
-    }
-    .navbar-toggler { border-color: rgba(255,255,255,0.25); }
-    .navbar-toggler-icon { filter: invert(1); }
-
-    /* ── HERO ── */
-    .af-hero {
-      position: relative;
-      width: 100%;
-      height: 680px;
-      overflow: hidden;
-    }
-    .af-hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    .af-hero-overlay {
-      position: absolute;
-      inset: 0;
+    /* gradient overlay per slide — same on all three */
+    .af-carousel .carousel-item::after {
+      content:'';
+      position:absolute; inset:0;
       background: linear-gradient(
         to right,
         rgba(10,10,10,0.82) 0%,
-        rgba(10,10,10,0.50) 50%,
+        rgba(10,10,10,0.50) 55%,
         rgba(10,10,10,0.10) 100%
       );
     }
-    .af-hero-body {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      z-index: 2;
+    /* card overlay layer */
+    .af-slide-body {
+      position:absolute; inset:0; z-index:2;
+      display:flex; align-items:center;
     }
+    /* positional helpers — set via data-card-align on carousel-item */
+    .af-carousel .carousel-item[data-card-align="left"]   .af-slide-body { justify-content:flex-start; }
+    .af-carousel .carousel-item[data-card-align="right"]  .af-slide-body { justify-content:flex-end; }
+    .af-carousel .carousel-item[data-card-align="center"] .af-slide-body { justify-content:center; }
+
     .af-hero-card {
-      background: rgba(10,10,10,0.75);
+      background: rgba(10,10,10,0.78);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(174,50,254,0.25);
       border-radius: 16px;
       padding: 40px 44px;
       max-width: 500px;
-    }
-    .af-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--purple);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-    .af-eyebrow::before {
-      content: '';
-      width: 22px; height: 2px;
-      background: var(--purple);
-      display: block;
-      flex-shrink: 0;
+      width: 100%;
     }
     .af-hero-h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(52px, 6.5vw, 80px);
-      line-height: 0.96;
-      color: #fff;
-      margin-bottom: 16px;
+      font-size: clamp(52px,6.5vw,80px);
+      line-height: 0.96; color:#fff; margin-bottom:16px;
     }
     .af-hero-h1 .accent { color: var(--purple); }
-    .af-hero-sub {
-      font-size: 15px;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.72;
-      margin-bottom: 28px;
-    }
-    .af-live-badge {
-      position: absolute;
-      bottom: 20px; right: 24px;
-      z-index: 3;
-      background: rgba(10,10,10,0.88);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(174,50,254,0.28);
-      border-radius: 10px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .af-live-dot  { width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 7px rgba(34,197,94,0.6);flex-shrink:0; }
-    .af-live-text { font-size:13px;font-weight:500;color:#fff;line-height:1.3; }
-    .af-live-sub  { font-size:11px;color:rgba(255,255,255,0.5);line-height:1.3; }
+    .af-hero-sub { font-size:15px; color:rgba(255,255,255,0.68); line-height:1.72; margin-bottom:28px; }
 
-    /* ── BUTTONS ── */
-    .btn-af-primary {
-      background: var(--purple);
-      color: #fff;
-      border: none;
-      padding: 11px 26px;
-      font-size: 15px;
-      font-weight: 500;
-      border-radius: 6px;
-      box-shadow: 0 4px 16px rgba(174,50,254,0.35);
-      transition: background .2s, box-shadow .2s, transform .15s;
-      text-decoration: none;
-      display: inline-block;
+    /* carousel controls — purple */
+    .af-carousel .carousel-control-prev,
+    .af-carousel .carousel-control-next {
+      width:48px; height:48px; border-radius:50%;
+      background:rgba(174,50,254,0.75);
+      top:50%; transform:translateY(-50%);
+      opacity:1; margin:0 12px;
     }
-    .btn-af-primary:hover {
-      background: #c84fff;
-      color: #fff;
-      box-shadow: 0 6px 22px rgba(174,50,254,0.55);
-      transform: translateY(-2px);
-    }
-    .btn-af-ghost {
-      background: transparent;
-      color: rgba(255,255,255,0.85);
-      border: 1px solid rgba(255,255,255,0.28);
-      padding: 11px 26px;
-      font-size: 15px;
-      font-weight: 500;
-      border-radius: 6px;
-      transition: background .2s, color .2s, border-color .2s, transform .15s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-af-ghost:hover {
-      background: var(--purple);
-      color: #fff;
-      border-color: var(--purple);
-      box-shadow: 0 4px 16px rgba(174,50,254,0.4);
-      transform: translateY(-2px);
-    }
-    .btn-af-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 11px 26px;
-      font-size: 15px;
-      font-weight: 500;
-      border-radius: 6px;
-      transition: background .2s, color .2s, border-color .2s, transform .15s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-af-outline:hover {
-      background: var(--purple);
-      color: #fff;
-      border-color: var(--purple);
-      box-shadow: 0 4px 16px rgba(174,50,254,0.3);
-      transform: translateY(-2px);
-    }
+    .af-carousel .carousel-control-prev { left:12px; }
+    .af-carousel .carousel-control-next { right:12px; }
+    .af-carousel .carousel-control-prev-icon,
+    .af-carousel .carousel-control-next-icon { width:20px; height:20px; }
 
-    /* ── STATS BAR ── */
-    .af-stats { background: var(--purple); }
-    .af-stats-inner {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
+    /* indicators */
+    .af-carousel .carousel-indicators [data-bs-target] {
+      width:10px; height:10px; border-radius:50%;
+      background:rgba(255,255,255,0.45); border:none;
     }
-    .af-stat-cell {
-      display: table-cell;
-      width: 25%;
-      padding: 22px 16px;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.2);
-      vertical-align: middle;
-    }
-    .af-stat-cell:last-child { border-right: none; }
-    .af-stat-num   { font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; line-height:1; }
-    .af-stat-label { font-size:13px; color:rgba(255,255,255,0.82); margin-top:3px; }
+    .af-carousel .carousel-indicators .active { background:var(--purple); }
 
-    /* ── SECTION UTILITIES ── */
-    .af-tag {
-      display: inline-block;
-      font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase;
-      color: var(--purple); margin-bottom:10px;
-    }
-    .af-h2 {
-      font-family:'Bebas Neue',sans-serif;
-      font-size: clamp(34px,5vw,52px);
-      line-height:1.05; color:var(--text); margin-bottom:16px;
-    }
-    .af-body { font-size:16px; color:var(--muted); line-height:1.75; }
-    .af-soft  { background: var(--soft); }
-    .py-section { padding-top: 80px; padding-bottom: 80px; }
-
-    /* ── ABOUT ── */
-    .af-about-img {
-      height: 420px; border-radius:14px; overflow:hidden;
-      border:1px solid var(--border);
-    }
-    .af-about-img img { width:100%;height:100%;object-fit:cover; }
-    .af-cred-list { list-style:none; padding:0; margin:0; }
-    .af-cred-list li {
-      font-size:14px; color:var(--muted); padding:7px 0;
-      border-bottom:1px solid var(--border);
-      display:flex; align-items:center; gap:10px;
-    }
-    .af-cred-list li:last-child { border-bottom:none; }
-    .af-cred-list li::before {
-      content:''; width:6px;height:6px;border-radius:50%;
-      background:var(--purple);flex-shrink:0;
-    }
-
-    /* ── CLASS CARDS ── */
-    .af-class-card {
-      background:#fff; border:1px solid var(--card-b); border-radius:14px;
-      padding:28px 24px; height:100%;
-      display:flex; flex-direction:column;
-      transition:border-color .22s, transform .2s, box-shadow .2s;
-    }
-    .af-class-card:hover {
-      border-color:rgba(174,50,254,0.4);
-      transform:translateY(-3px);
-      box-shadow:0 8px 28px rgba(174,50,254,0.10);
-    }
-    .af-class-icon  { font-size:28px; margin-bottom:14px; }
-    .af-card-h3 { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--text); margin-bottom:10px; }
-    .af-pill {
-      display:inline-block; align-self:flex-start; margin-top:16px;
-      font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
-      color:var(--purple); background:var(--purple-dim); padding:4px 12px; border-radius:20px;
-    }
-
-    /* ── TESTIMONIALS ── */
-    .af-testi-card {
-      background:#fff; border:1px solid var(--card-b); border-radius:14px;
-      padding:26px; height:100%; display:flex; flex-direction:column;
-    }
-    .af-stars       { color:var(--purple); font-size:15px; margin-bottom:10px; }
-    .af-testi-quote { font-size:15px; color:var(--muted); line-height:1.75; font-style:italic; flex-grow:1; margin-bottom:14px; }
-    .af-testi-name  { font-size:14px; font-weight:500; color:var(--text); }
-    .af-testi-role  { font-size:12px; color:var(--muted); }
-
-    /* ── CTA BAND ── */
-    .af-cta {
-      background:var(--dark); border:1px solid rgba(174,50,254,0.22);
-      border-radius:16px; padding:52px; position:relative; overflow:hidden;
-    }
-    .af-cta::before {
-      content:''; position:absolute; top:-80px; right:-60px;
-      width:360px; height:360px;
-      background:radial-gradient(circle,rgba(174,50,254,0.18) 0%,transparent 70%);
-      pointer-events:none;
-    }
-    .af-cta-h2  { font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,4vw,46px); color:#fff; line-height:1.05; margin-bottom:8px; position:relative; }
-    .af-cta-sub { font-size:16px; color:rgba(255,255,255,0.58); margin:0; position:relative; }
-    .btn-af-cta {
-      background:var(--purple); color:#fff; border:none;
-      padding:14px 36px; font-size:16px; font-weight:500;
-      border-radius:6px; white-space:nowrap; flex-shrink:0;
-      box-shadow:0 4px 16px rgba(174,50,254,0.35);
-      transition:background .2s,box-shadow .2s,transform .15s;
-      text-decoration:none; display:inline-block;
-    }
-    .btn-af-cta:hover {
-      background:#c84fff; color:#fff;
-      box-shadow:0 6px 24px rgba(174,50,254,0.55);
-      transform:translateY(-2px);
-    }
-
-    /* ── FOOTER ── */
-    .af-footer {
-      background:var(--dark);
-      border-top:1px solid rgba(255,255,255,0.08);
-      padding:52px 0 32px;
-    }
-    .af-footer-text    { font-size:14px; color:rgba(255,255,255,0.52); line-height:1.7; max-width:280px; }
-    .af-footer-heading { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:14px; }
-    .af-foot-link {
-      display:block; font-size:15px;
-      color:rgba(255,255,255,0.58); padding:4px 0;
-      text-decoration:none; transition:color .18s;
-    }
-    .af-foot-link:hover { color:#fff; }
-    .af-footer-copy { font-size:13px; color:rgba(255,255,255,0.25); margin:0; }
-
-    /* Social icons — compact, matching original site scale */
-    .af-social a {
-      display:inline-flex; align-items:center; justify-content:center;
-      width:32px; height:32px; border-radius:6px;
-      background:rgba(255,255,255,0.07);
-      border:1px solid rgba(255,255,255,0.10);
-      color:rgba(255,255,255,0.65); font-size:15px;
-      text-decoration:none;
-      transition:background .18s, color .18s, border-color .18s;
-    }
-    .af-social a:hover {
-      background:var(--purple); color:#fff; border-color:var(--purple);
-    }
-
-    /* ── AOS fallback (show content if AOS blocked) ── */
-    [data-aos] { opacity:1 !important; transform:none !important; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width:991px) {
-      .af-hero { height:580px; }
-      .af-hero-card { padding:30px 26px; }
-      .navbar-collapse { background:rgba(10,10,10,0.97); padding:12px 8px; border-radius:8px; margin-top:6px; }
-    }
+    @media (max-width:991px) { .af-carousel { height:580px; } .af-hero-card { padding:30px 26px; } }
     @media (max-width:767px) {
-      .af-hero { height:500px; }
+      .af-carousel { height:500px; }
       .af-hero-card { max-width:100%; padding:24px 20px; }
-      .af-live-badge { display:none !important; }
-      .af-cta { padding:36px 28px; }
-      .af-stats-inner { display:block; }
-      .af-stat-cell { display:block; width:100%; border-right:none; border-bottom:1px solid rgba(255,255,255,0.15); }
-      .af-stat-cell:last-child { border-bottom:none; }
+      .af-carousel .carousel-item[data-card-align="right"] .af-slide-body { justify-content:flex-start; }
     }
   </style>
 </head>
@@ -373,12 +99,9 @@
 <nav class="navbar navbar-expand-lg af-nav sticky-top">
   <div class="container">
     <a class="navbar-brand p-0" href="index.html">
-      <img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png"
-           alt="Adyctive Fitness" height="40">
+      <img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" height="40">
     </a>
-    <button class="navbar-toggler border-0" type="button"
-            data-bs-toggle="collapse" data-bs-target="#mainNav"
-            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="mainNav">
@@ -393,53 +116,112 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="af-hero">
-  <img class="af-hero-img"
-       src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-2.svg"
-       alt="Adyctive Fitness class">
-  <div class="af-hero-overlay"></div>
-  <div class="af-hero-body">
-    <div class="container">
-      <div class="af-hero-card">
-        <div class="af-eyebrow">Southern MD · In-person &amp; online</div>
-        <h1 class="af-hero-h1">FIERCE<br>FITNESS<br><span class="accent">WITH FLAIR.</span></h1>
-        <p class="af-hero-sub">Dance your way to the body you want. Zumba® · Strong Nation® · Mixxedfit® — where every workout feels like a party.</p>
-        <div class="d-flex flex-wrap gap-3">
-          <a href="pages/get-started.html" class="btn-af-primary">Get started today</a>
-          <a href="pages/rates.html" class="btn-af-ghost">View rates →</a>
+<!-- ══════════════════════════════════════════════
+     BOOTSTRAP CAROUSEL HERO
+     ──────────────────────────────────────────────
+     To add/change slides:
+       1. Copy a <div class="carousel-item"> block
+       2. Change the <img src="..."> to your image
+       3. Change data-card-align to "left", "right", or "center"
+       4. Edit the h1, subtitle, and button text
+
+     Card position options per slide:
+       data-card-align="left"    card floats left
+       data-card-align="right"   card floats right
+       data-card-align="center"  card centred
+     ══════════════════════════════════════════════ -->
+<div id="heroCarousel" class="carousel slide af-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+  </div>
+
+  <div class="carousel-inner">
+
+    <!-- ── SLIDE 1 — card LEFT ── -->
+    <div class="carousel-item active" data-card-align="left">
+      <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-2.svg" alt="Adyctive Fitness class">
+      <div class="af-slide-body">
+        <div class="container">
+          <div class="af-hero-card">
+            <div class="af-eyebrow">Southern MD · In-person &amp; online</div>
+            <h1 class="af-hero-h1">FIERCE<br>FITNESS<br><span class="accent">WITH FLAIR.</span></h1>
+            <p class="af-hero-sub">Dance your way to the body you want. Zumba® · Strong Nation® · Mixxedfit® — where every workout feels like a party.</p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="pages/get-started.html" class="btn-af-primary">Get started today</a>
+              <a href="pages/rates.html" class="btn-af-ghost">View rates →</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="af-live-badge">
+
+    <!-- ── SLIDE 2 — card RIGHT ── -->
+    <div class="carousel-item" data-card-align="right">
+      <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-1.svg" alt="Zumba class">
+      <div class="af-slide-body">
+        <div class="container">
+          <div class="af-hero-card">
+            <div class="af-eyebrow">60% Cardio · 40% Strength</div>
+            <h1 class="af-hero-h1">GET<br>ADYCTED<br><span class="accent">TO FITNESS.</span></h1>
+            <p class="af-hero-sub">No two workouts are ever the same. Circuit, crossfit-style, tabata, obstacle, and dance fitness — that's what keeps you coming back.</p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="pages/rates.html" class="btn-af-primary">See all classes</a>
+              <a href="pages/about.html" class="btn-af-ghost">Meet Naarah →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 3 — card CENTER ── -->
+    <div class="carousel-item" data-card-align="center">
+      <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-3.svg" alt="Dance fitness">
+      <div class="af-slide-body">
+        <div class="container d-flex justify-content-center">
+          <div class="af-hero-card text-center">
+            <div class="af-eyebrow justify-content-center">Nothing to lose</div>
+            <h1 class="af-hero-h1">SO MUCH<br><span class="accent">TO GAIN.</span></h1>
+            <p class="af-hero-sub">In-person in Southern MD or online via Zoom — join the Adyctive Fitness community today.</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+              <a href="pages/get-started.html" class="btn-af-primary">Sign up now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.carousel-inner -->
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
+  <!-- Live badge (always visible) -->
+  <div class="af-live-badge d-none d-md-flex">
     <div class="af-live-dot"></div>
     <div>
       <div class="af-live-text">Classes available now</div>
       <div class="af-live-sub">In-person &amp; online via Zoom</div>
     </div>
   </div>
-</section>
+
+</div><!-- /#heroCarousel -->
 
 <!-- STATS BAR -->
 <div class="af-stats">
   <div class="af-stats-inner">
-    <div class="af-stat-cell">
-      <div class="af-stat-num">13+</div>
-      <div class="af-stat-label">Years instructing</div>
-    </div>
-    <div class="af-stat-cell">
-      <div class="af-stat-num">3</div>
-      <div class="af-stat-label">Class formats</div>
-    </div>
-    <div class="af-stat-cell">
-      <div class="af-stat-num">60/40</div>
-      <div class="af-stat-label">Cardio / strength split</div>
-    </div>
-    <div class="af-stat-cell">
-      <div class="af-stat-num">AFAA®</div>
-      <div class="af-stat-label">Certified trainer &amp; instructor</div>
-    </div>
+    <div class="af-stat-cell"><div class="af-stat-num">13+</div><div class="af-stat-label">Years instructing</div></div>
+    <div class="af-stat-cell"><div class="af-stat-num">3</div><div class="af-stat-label">Class formats</div></div>
+    <div class="af-stat-cell"><div class="af-stat-num">60/40</div><div class="af-stat-label">Cardio / strength split</div></div>
+    <div class="af-stat-cell"><div class="af-stat-num">AFAA®</div><div class="af-stat-label">Certified trainer &amp; instructor</div></div>
   </div>
 </div>
 
@@ -449,8 +231,7 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-5">
         <div class="af-about-img">
-          <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-1.svg"
-               alt="Naarah Crawley">
+          <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-1.svg" alt="Naarah Crawley">
         </div>
       </div>
       <div class="col-lg-7">
@@ -480,25 +261,25 @@
     </div>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="af-class-card">
-          <div class="af-class-icon">💃</div>
-          <h3 class="af-card-h3">Zumba® Fitness</h3>
+        <div class="af-card">
+          <div class="af-card-icon">💃</div>
+          <h3 class="af-h3">Zumba® Fitness</h3>
           <p class="af-body flex-grow-1">Salsa, merengue, reggaeton, cumbia, hip hop — a full-body party that torches calories without feeling like work.</p>
           <span class="af-pill">$7 per class</span>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="af-class-card">
-          <div class="af-class-icon">💪</div>
-          <h3 class="af-card-h3">Strong Nation® &amp; Boot Camp</h3>
+        <div class="af-card">
+          <div class="af-card-icon">💪</div>
+          <h3 class="af-h3">Strong Nation® &amp; Boot Camp</h3>
           <p class="af-body flex-grow-1">60/40 cardio-strength split. Tone up without bulking. Dynamic movements, great music, zero boredom.</p>
           <span class="af-pill">From $15/pp</span>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="af-class-card">
-          <div class="af-class-icon">🧘🏾‍♀️</div>
-          <h3 class="af-card-h3">Stretch n Flex</h3>
+        <div class="af-card">
+          <div class="af-card-icon">🧘🏾‍♀️</div>
+          <h3 class="af-h3">Stretch n Flex</h3>
           <p class="af-body flex-grow-1">Body-weight and light resistance mat work. Get bendier, get stronger, bring your bands.</p>
           <span class="af-pill">$7 per class</span>
         </div>
@@ -563,17 +344,12 @@
 <footer class="af-footer">
   <div class="container">
     <div class="row g-4 pb-4 border-bottom" style="border-color:rgba(255,255,255,0.1)!important;">
-
-      <!-- Brand -->
       <div class="col-lg-5">
         <a href="index.html" class="d-inline-block mb-3">
-          <img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png"
-               alt="Adyctive Fitness" height="36">
+          <img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" height="36">
         </a>
         <p class="af-footer-text">Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p>
       </div>
-
-      <!-- Page links — two columns, no heading -->
       <div class="col-lg-4 col-6">
         <div class="row g-0">
           <div class="col-6">
@@ -587,34 +363,23 @@
           </div>
         </div>
       </div>
-
-      <!-- Connect — social icons only -->
       <div class="col-lg-3 col-6">
         <p class="af-footer-heading mb-3">Connect</p>
         <div class="af-social d-flex gap-2">
-          <a href="https://www.instagram.com/adyctivefitness/" target="_blank" aria-label="Instagram">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.facebook.com/adyctivefitness/" target="_blank" aria-label="Facebook">
-            <i class="bi bi-facebook"></i>
-          </a>
-          <a href="https://www.youtube.com/@adyctivefitness" target="_blank" aria-label="YouTube">
-            <i class="bi bi-youtube"></i>
-          </a>
+          <a href="https://www.instagram.com/adyctivefitness/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/adyctivefitness/" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.youtube.com/@adyctivefitness" target="_blank" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
-
     <div class="pt-3">
       <p class="af-footer-copy">© 2026 Adyctive Fitness LLC · Southern Maryland</p>
     </div>
   </div>
 </footer>
 
-<!-- Bootstrap 5 JS bundle (includes Popper) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Active nav link
   const page = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.af-nav .nav-link').forEach(a => {
     if (a.getAttribute('href') === page) a.classList.add('active');
