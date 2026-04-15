@@ -1,263 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutrition – Adyctive Fitness</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .macro-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
-    .macro-card { border-radius:var(--radius-lg); padding:28px 24px; border:1px solid var(--card-border); background:var(--white); }
-    .macro-card.carbs   { border-top:4px solid var(--purple); }
-    .macro-card.protein { border-top:4px solid #60a5fa; }
-    .macro-card.fat     { border-top:4px solid #f59e0b; }
-    .macro-pct { font-family:var(--font-display); font-size:52px; line-height:1; margin-bottom:6px; }
-    .macro-card.carbs   .macro-pct { color:var(--purple); }
-    .macro-card.protein .macro-pct { color:#3b82f6; }
-    .macro-card.fat     .macro-pct { color:#f59e0b; }
-    .macro-card h3 { font-family:var(--font-display); font-size:20px; color:var(--light-text); margin-bottom:8px; }
-    .macro-card p  { font-size:13px; color:var(--light-muted); line-height:1.65; }
-
-    .food-groups { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
-    .food-group { background:var(--white); border:1px solid var(--card-border); border-radius:var(--radius-lg); padding:24px 20px; }
-    .food-group-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
-    .food-group-icon { font-size:22px; }
-    .food-group h3 { font-family:var(--font-display); font-size:18px; color:var(--light-text); }
-    .food-list { list-style:none; }
-    .food-list li { font-size:13px; color:var(--light-muted); padding:5px 0; border-bottom:1px solid var(--light-border); display:flex; align-items:center; gap:8px; }
-    .food-list li:last-child { border-bottom:none; }
-    .food-list li::before { content:'·'; color:var(--purple); font-size:16px; }
-    .food-disclaimer { margin-top:24px; background:rgba(174,50,254,0.06); border:1px solid rgba(174,50,254,0.18); border-radius:var(--radius); padding:16px 20px; font-size:13px; color:var(--light-muted); line-height:1.65; }
-
-    .meal-plan-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:40px; }
-    .meal-card { background:var(--white); border:1px solid var(--card-border); border-radius:var(--radius-lg); padding:24px; }
-    .meal-time { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--purple); margin-bottom:8px; }
-    .meal-card h3 { font-family:var(--font-display); font-size:20px; color:var(--light-text); margin-bottom:12px; }
-    .meal-items { list-style:none; }
-    .meal-items li { font-size:13px; color:var(--light-muted); padding:5px 0; display:flex; align-items:center; gap:8px; }
-    .meal-items li::before { content:'→'; color:var(--purple); font-size:12px; }
-    .meal-total { margin-top:14px; padding-top:14px; border-top:1px solid var(--light-border); font-size:12px; color:var(--light-muted); }
-
-    .no-list-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:32px; }
-    .no-item { background:var(--white); border:1px solid var(--card-border); border-radius:var(--radius); padding:14px 12px; text-align:center; font-size:13px; color:var(--light-muted); }
-    .no-item::before { display:block; font-size:20px; margin-bottom:6px; content:'✗'; color:rgba(174,50,254,0.45); }
-
-    .tools-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:40px; }
-    .tool-card { background:var(--white); border:1px solid var(--card-border); border-radius:var(--radius-lg); padding:28px 24px; display:flex; gap:18px; align-items:flex-start; }
-    .tool-icon { font-size:32px; flex-shrink:0; }
-    .tool-card h3 { font-family:var(--font-display); font-size:20px; color:var(--light-text); margin-bottom:6px; }
-    .tool-card p  { font-size:13px; color:var(--light-muted); line-height:1.65; margin-bottom:14px; }
-
-    @media(max-width:900px){
-      .macro-grid{grid-template-columns:1fr}
-      .food-groups{grid-template-columns:1fr 1fr}
-      .meal-plan-grid{grid-template-columns:1fr}
-      .no-list-grid{grid-template-columns:repeat(3,1fr)}
-      .tools-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:560px){
-      .food-groups{grid-template-columns:1fr}
-      .no-list-grid{grid-template-columns:repeat(2,1fr)}
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/af-styles.css">
 </head>
 <body>
-
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="../index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:40px;width:auto;"></a>
-    <div class="nav-links">
-      <a href="about.html">About</a>
-      <a href="rates.html">Rates</a>
-      <a href="nutrition.html" class="active">Nutrition</a>
-      <a href="calendar.html">Calendar</a>
-      <a href="get-started.html" class="nav-cta">Get started</a>
+<nav class="navbar navbar-expand-lg af-nav sticky-top">
+  <div class="container">
+    <a class="navbar-brand p-0" href="../index.html"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" height="40"></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav gap-1 mt-2 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="rates.html">Rates</a></li>
+        <li class="nav-item"><a class="nav-link active" href="nutrition.html">Nutrition</a></li>
+        <li class="nav-item"><a class="nav-link" href="calendar.html">Calendar</a></li>
+        <li class="nav-item"><a class="nav-link" href="get-started.html">Get started</a></li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<header class="page-header">
+<header class="af-page-header">
   <div class="container">
-    <div class="tag">Fuel your body</div>
+    <span class="af-tag">Fuel your body</span>
     <h1>NUTRITION</h1>
     <p>You can't out-train a bad diet. Here's what we recommend to complement your workouts.</p>
   </div>
 </header>
 
-<!-- MACROS (white) -->
-<section class="section" style="background:var(--light);">
+<!-- MACROS -->
+<section class="py-section bg-white">
   <div class="container">
-    <div class="tag">The zone concept</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,52px);color:var(--light-text);margin-bottom:10px;">Know your macros</h2>
-    <p style="color:var(--light-muted);font-size:15px;max-width:540px;">We implement the Zone concept — a calorie allocation approach that balances your fuel across all three macronutrients.</p>
-    <div class="macro-grid">
-      <div class="macro-card carbs">
-        <div class="macro-pct">40%</div>
-        <h3>Carbohydrates</h3>
-        <p>Your primary fuel source. Focus on complex carbs — oats, brown rice, sweet potatoes, fruits, and vegetables — for sustained energy.</p>
-      </div>
-      <div class="macro-card protein">
-        <div class="macro-pct">30%</div>
-        <h3>Protein</h3>
-        <p>Essential for muscle repair and tone. Prioritise lean sources: chicken, eggs, tilapia, Greek yogurt, and quality protein shakes.</p>
-      </div>
-      <div class="macro-card fat">
-        <div class="macro-pct">30%</div>
-        <h3>Healthy Fats</h3>
-        <p>Don't fear fats — fear the wrong ones. Avocado, nuts, coconut oil, and salmon give your body what it needs for hormones and recovery.</p>
-      </div>
+    <span class="af-tag">The zone concept</span>
+    <h2 class="af-h2">Know your macros</h2>
+    <p class="af-body mb-5" style="max-width:540px;">We implement the Zone concept — 40% carbs, 30% protein, 30% fat — for optimal fat loss and energy.</p>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="af-macro-card carbs"><div class="af-macro-pct">40%</div><h3 class="af-h3">Carbohydrates</h3><p class="af-body">Your primary fuel source. Oats, brown rice, sweet potatoes, fruits, and vegetables for sustained energy.</p></div></div>
+      <div class="col-md-4"><div class="af-macro-card protein"><div class="af-macro-pct">30%</div><h3 class="af-h3">Protein</h3><p class="af-body">Essential for muscle repair and tone. Chicken, eggs, tilapia, Greek yogurt, and quality protein shakes.</p></div></div>
+      <div class="col-md-4"><div class="af-macro-card fat"><div class="af-macro-pct">30%</div><h3 class="af-h3">Healthy Fats</h3><p class="af-body">Don't fear fats. Avocado, nuts, coconut oil, and salmon give your body what it needs for recovery.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- SHOPPING LIST (soft) -->
-<section class="section" style="background:var(--light-soft);">
+<!-- SHOPPING LIST -->
+<section class="py-section af-soft">
   <div class="container">
-    <div class="tag">Grocery guide</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,52px);color:var(--light-text);margin-bottom:10px;">Suggested shopping list</h2>
-    <p style="color:var(--light-muted);font-size:15px;max-width:600px;">Starting-point suggestions to help you shop with more nutritional responsibility.</p>
-    <div class="food-groups">
-      <div class="food-group">
-        <div class="food-group-header"><span class="food-group-icon">🥩</span><h3>Proteins</h3></div>
-        <ul class="food-list">
-          <li>Eggs &amp; egg whites</li><li>Chicken breast</li><li>Turkey</li>
-          <li>Tilapia</li><li>Salmon</li><li>Greek yogurt (Oikos)</li>
-          <li>Tofu</li><li>Protein shake (Seacret)</li>
-        </ul>
-      </div>
-      <div class="food-group">
-        <div class="food-group-header"><span class="food-group-icon">🌾</span><h3>Carbs</h3></div>
-        <ul class="food-list">
-          <li>Steel cut Irish oatmeal</li><li>Brown rice</li><li>Whole wheat pasta</li>
-          <li>Ezekiel bread</li><li>Sweet potatoes</li><li>Spinach &amp; broccoli</li>
-          <li>Apples, bananas, blueberries</li><li>Watermelon, oranges</li>
-        </ul>
-      </div>
-      <div class="food-group">
-        <div class="food-group-header"><span class="food-group-icon">🥑</span><h3>Fats &amp; Boosters</h3></div>
-        <ul class="food-list">
-          <li>Avocado</li><li>Coconut oil</li><li>Almonds &amp; cashews (unsalted)</li>
-          <li>Peanuts</li><li>Cayenne pepper</li><li>Cinnamon &amp; turmeric</li>
-          <li>Green tea</li><li>Apple cider vinegar</li>
-        </ul>
-      </div>
+    <span class="af-tag">Grocery guide</span>
+    <h2 class="af-h2">Suggested shopping list</h2>
+    <p class="af-body mb-5" style="max-width:600px;">Starting-point suggestions to help you shop with more nutritional responsibility.</p>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="af-food-group"><div class="d-flex align-items-center gap-2 mb-3"><span style="font-size:22px;">🥩</span><h3 class="af-h3 mb-0">Proteins</h3></div><ul class="af-food-list"><li>Eggs &amp; egg whites</li><li>Chicken breast</li><li>Turkey</li><li>Tilapia</li><li>Salmon</li><li>Greek yogurt (Oikos)</li><li>Tofu</li><li>Protein shake (Seacret)</li></ul></div></div>
+      <div class="col-md-4"><div class="af-food-group"><div class="d-flex align-items-center gap-2 mb-3"><span style="font-size:22px;">🌾</span><h3 class="af-h3 mb-0">Carbs</h3></div><ul class="af-food-list"><li>Steel cut Irish oatmeal</li><li>Brown rice</li><li>Whole wheat pasta</li><li>Ezekiel bread</li><li>Sweet potatoes</li><li>Spinach &amp; broccoli</li><li>Apples, bananas, blueberries</li><li>Watermelon, oranges</li></ul></div></div>
+      <div class="col-md-4"><div class="af-food-group"><div class="d-flex align-items-center gap-2 mb-3"><span style="font-size:22px;">🥑</span><h3 class="af-h3 mb-0">Fats &amp; Boosters</h3></div><ul class="af-food-list"><li>Avocado</li><li>Coconut oil</li><li>Almonds &amp; cashews (unsalted)</li><li>Peanuts</li><li>Cayenne pepper</li><li>Cinnamon &amp; turmeric</li><li>Green tea</li><li>Apple cider vinegar</li></ul></div></div>
     </div>
-    <div class="food-disclaimer">⚠️ Not an exhaustive list. Not intended to replace the advice of your dietician or physician. Always consult your doctor before starting a new nutrition regimen.</div>
+    <div class="af-disclaimer mt-4">⚠️ Not an exhaustive list. Not intended to replace the advice of your dietician or physician. Always consult your doctor before starting a new nutrition regimen.</div>
   </div>
 </section>
 
-<!-- MEAL PLAN (white) -->
-<section class="section" style="background:var(--light);">
+<!-- MEAL PLAN -->
+<section class="py-section bg-white">
   <div class="container">
-    <div class="tag">Sample meal plan</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,52px);color:var(--light-text);margin-bottom:10px;">~1,300 calorie day</h2>
-    <p style="color:var(--light-muted);font-size:15px;max-width:540px;">Adjust portions to your goals and activity level.</p>
-    <div class="meal-plan-grid">
-      <div class="meal-card">
-        <div class="meal-time">Breakfast</div><h3>Morning fuel</h3>
-        <ul class="meal-items">
-          <li>1 extra large egg + 3 egg whites, diced peppers or tomatoes</li>
-          <li>½ sweet potato (or apple/orange)</li>
-        </ul>
-        <div class="meal-total">~250 calories · High protein</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-time">Mid-morning</div><h3>At-work snack</h3>
-        <ul class="meal-items">
-          <li>⅓ cup Irish oatmeal (dry) + ¼ cup blueberries</li>
-          <li>½ tbsp chia seeds + 1 glass almond milk</li>
-        </ul>
-        <div class="meal-total">~280 calories · Complex carbs</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-time">Lunch</div><h3>Midday meal</h3>
-        <ul class="meal-items">
-          <li>4 oz chicken breast</li>
-          <li>½ cup cooked brown rice + 1 cup spinach</li>
-        </ul>
-        <div class="meal-total">~380 calories · Balanced macros</div>
-      </div>
-      <div class="meal-card">
-        <div class="meal-time">Dinner + evening</div><h3>Wind down</h3>
-        <ul class="meal-items">
-          <li>4 oz chicken breast + 2 cups broccoli + ½ sweet potato</li>
-          <li>1 Oikos vanilla Greek yogurt (late evening)</li>
-        </ul>
-        <div class="meal-total">~390 calories · Light &amp; clean</div>
-      </div>
+    <span class="af-tag">Sample meal plan</span>
+    <h2 class="af-h2">~1,300 calorie day</h2>
+    <p class="af-body mb-5" style="max-width:540px;">Adjust portions to your goals and activity level.</p>
+    <div class="row g-4">
+      <div class="col-md-6"><div class="af-card"><p class="af-tag mb-1">Breakfast</p><h3 class="af-h3">Morning fuel</h3><ul class="af-food-list"><li>1 extra large egg + 3 egg whites, diced peppers or tomatoes</li><li>½ sweet potato (or apple/orange)</li></ul><p class="af-body mt-3" style="font-size:13px;">~250 calories · High protein</p></div></div>
+      <div class="col-md-6"><div class="af-card"><p class="af-tag mb-1">Mid-morning</p><h3 class="af-h3">At-work snack</h3><ul class="af-food-list"><li>⅓ cup Irish oatmeal + ¼ cup blueberries + ½ tbsp chia seeds</li><li>1 glass almond milk</li></ul><p class="af-body mt-3" style="font-size:13px;">~280 calories · Complex carbs</p></div></div>
+      <div class="col-md-6"><div class="af-card"><p class="af-tag mb-1">Lunch</p><h3 class="af-h3">Midday meal</h3><ul class="af-food-list"><li>4 oz chicken breast</li><li>½ cup cooked brown rice + 1 cup spinach</li></ul><p class="af-body mt-3" style="font-size:13px;">~380 calories · Balanced macros</p></div></div>
+      <div class="col-md-6"><div class="af-card"><p class="af-tag mb-1">Dinner + evening</p><h3 class="af-h3">Wind down</h3><ul class="af-food-list"><li>4 oz chicken breast + 2 cups broccoli + ½ sweet potato</li><li>1 Oikos vanilla Greek yogurt (late evening)</li></ul><p class="af-body mt-3" style="font-size:13px;">~390 calories · Light &amp; clean</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- NO LIST (soft) -->
-<section class="section" style="background:var(--light-soft);">
+<!-- NO LIST -->
+<section class="py-section af-soft">
   <div class="container">
-    <div class="tag">Avoid these</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,52px);color:var(--light-text);margin-bottom:10px;">The no list</h2>
-    <p style="color:var(--light-muted);font-size:15px;max-width:540px;">If you're serious about results, cut these out — or at least cut way back.</p>
-    <div class="no-list-grid">
-      <div class="no-item">Alcohol</div><div class="no-item">Bagels &amp; bagel thins</div>
-      <div class="no-item">Crackers</div><div class="no-item">Creamy dressings</div>
-      <div class="no-item">Potato chips</div><div class="no-item">Cake &amp; pie</div>
-      <div class="no-item">Candy</div><div class="no-item">Soda &amp; soft drinks</div>
-      <div class="no-item">Mixed Starbucks drinks</div><div class="no-item">Processed snacks</div>
+    <span class="af-tag">Avoid these</span>
+    <h2 class="af-h2">The no list</h2>
+    <p class="af-body mb-5" style="max-width:540px;">Cut these out — or at least cut way back — for best results.</p>
+    <div class="row g-3">
+      <div class="col-6 col-md-2"><div class="af-no-item">Alcohol</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Bagels</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Crackers</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Creamy dressings</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Potato chips</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Cake &amp; pie</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Candy</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Soda</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Mixed Starbucks</div></div>
+      <div class="col-6 col-md-2"><div class="af-no-item">Processed snacks</div></div>
     </div>
   </div>
 </section>
 
-<!-- TOOLS (white) -->
-<section class="section" style="background:var(--light);">
+<!-- TOOLS -->
+<section class="py-section bg-white">
   <div class="container">
-    <div class="tag">Recommended tools</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,52px);color:var(--light-text);margin-bottom:10px;">Track your progress</h2>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-icon">📱</div>
-        <div>
-          <h3>MyFitnessPal</h3>
-          <p>We use MyFitnessPal to help you reach your goals as quickly as possible. Daily monitoring of your eating habits lets you understand the real effects of your diet. We implement the Zone concept: 40% carbs, 30% fat, 30% protein.</p>
-          <a href="https://www.myfitnesspal.com/" target="_blank" class="btn btn-ghost-dark" style="padding:8px 18px;font-size:13px;">Sign up free →</a>
-        </div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">🌿</div>
-        <div>
-          <h3>Seacret Nutrition</h3>
-          <p>Nay personally uses the Seacret vanilla protein powder and greens in her Adyctive smoothies. Great as a breakfast, snack, or post-workout fuel. Clean ingredients, high-quality manufacturing.</p>
-          <a href="https://www.seacretdirect.com/naarah/en/us/products/category#categories=1199&load=true" target="_blank" class="btn btn-ghost-dark" style="padding:8px 18px;font-size:13px;">Shop Seacret →</a>
-        </div>
-      </div>
+    <span class="af-tag">Recommended tools</span>
+    <h2 class="af-h2">Track your progress</h2>
+    <div class="row g-4 mt-2">
+      <div class="col-md-6"><div class="af-tool-card"><div class="d-flex gap-3"><span style="font-size:32px;flex-shrink:0;">📱</span><div><h3 class="af-h3">MyFitnessPal</h3><p class="af-body mb-3">We use MyFitnessPal to help you reach your goals as quickly as possible. We implement the Zone concept — 40% carbs, 30% fat, 30% protein.</p><a href="https://www.myfitnesspal.com/" target="_blank" class="btn-af-outline" style="padding:8px 18px;font-size:14px;">Sign up free →</a></div></div></div></div>
+      <div class="col-md-6"><div class="af-tool-card"><div class="d-flex gap-3"><span style="font-size:32px;flex-shrink:0;">🌿</span><div><h3 class="af-h3">Seacret Nutrition</h3><p class="af-body mb-3">Nay personally uses the Seacret vanilla protein powder and greens in her Adyctive smoothies. Clean ingredients, high-quality manufacturing.</p><a href="https://www.seacretdirect.com/naarah/en/us/products/category#categories=1199&load=true" target="_blank" class="btn-af-outline" style="padding:8px 18px;font-size:14px;">Shop Seacret →</a></div></div></div></div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
+<footer class="af-footer">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="../index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:36px;width:auto;"></a>
-        <p>Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="about.html">About Naarah</a><a href="rates.html">Rates &amp; Services</a>
-        <a href="nutrition.html">Nutrition</a><a href="calendar.html">Class Calendar</a>
-        <a href="get-started.html">Get Started</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="https://www.instagram.com/adyctivefitness/" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/adyctivefitness/" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/@adyctivefitness" target="_blank">YouTube</a>
-        <a href="mailto:info@adyctivefitness.com">Email us</a>
-      </div>
+    <div class="row g-4 pb-4 border-bottom" style="border-color:rgba(255,255,255,0.1)!important;">
+      <div class="col-lg-5"><a href="../index.html" class="d-inline-block mb-3"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" height="36"></a><p class="af-footer-text">Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p></div>
+      <div class="col-lg-4 col-6"><div class="row g-0"><div class="col-6"><a href="about.html" class="af-foot-link">About</a><a href="rates.html" class="af-foot-link">Rates &amp; Services</a><a href="nutrition.html" class="af-foot-link">Nutrition</a></div><div class="col-6"><a href="calendar.html" class="af-foot-link">Calendar</a><a href="get-started.html" class="af-foot-link">Get Started</a></div></div></div>
+      <div class="col-lg-3 col-6"><p class="af-footer-heading mb-3">Connect</p><div class="af-social d-flex gap-2"><a href="https://www.instagram.com/adyctivefitness/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="https://www.facebook.com/adyctivefitness/" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="https://www.youtube.com/@adyctivefitness" target="_blank" aria-label="YouTube"><i class="bi bi-youtube"></i></a></div></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Adyctive Fitness LLC · Southern Maryland</p>
-      <p>#GetAdycted 💙</p>
-    </div>
+    <div class="pt-3"><p class="af-footer-copy">© 2026 Adyctive Fitness LLC · Southern Maryland</p></div>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

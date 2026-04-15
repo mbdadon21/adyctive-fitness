@@ -1,77 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendar – Adyctive Fitness</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .calendar-note { background:var(--light-soft); border:1px solid var(--light-border); border-radius:var(--radius-lg); padding:24px 28px; margin-bottom:32px; display:flex; align-items:flex-start; gap:16px; }
-    .calendar-note p { font-size:14px; color:var(--light-muted); line-height:1.7; }
-    .calendar-note p strong { color:var(--light-text); }
-    .calendar-placeholder { background:var(--light-soft); border:2px dashed rgba(174,50,254,0.3); border-radius:var(--radius-lg); padding:80px 40px; text-align:center; }
-    .calendar-placeholder .icon { font-size:48px; margin-bottom:16px; }
-    .calendar-placeholder h3 { font-family:var(--font-display); font-size:28px; color:var(--light-text); margin-bottom:10px; }
-    .calendar-placeholder p { font-size:14px; color:var(--light-muted); max-width:480px; margin:0 auto 24px; line-height:1.7; }
-    .embed-code { background:rgba(174,50,254,0.06); border:1px solid rgba(174,50,254,0.15); border-radius:var(--radius); padding:16px 20px; font-family:monospace; font-size:12px; color:var(--purple); text-align:left; margin-top:20px; }
-
-    .week-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:36px; }
-    .day-label { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--light-muted); margin-bottom:10px; text-align:center; padding-bottom:8px; border-bottom:1px solid var(--light-border); }
-    .day-event { background:var(--white); border:1px solid var(--card-border); border-radius:8px; padding:12px; margin-bottom:8px; }
-    .day-event.zumba    { border-left:3px solid var(--purple); }
-    .day-event.bootcamp { border-left:3px solid #60a5fa; }
-    .day-event.stretch  { border-left:3px solid #34d399; }
-    .day-event .etime { font-size:11px; color:var(--light-muted); margin-bottom:4px; }
-    .day-event .ename { font-size:12px; font-weight:500; color:var(--light-text); line-height:1.4; }
-    .legend { display:flex; gap:20px; margin-top:24px; flex-wrap:wrap; }
-    .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--light-muted); }
-    .legend-dot { width:8px; height:8px; border-radius:50%; }
-
-    .booking-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:40px; }
-    .booking-card { background:var(--white); border:1px solid var(--card-border); border-radius:var(--radius-lg); padding:32px 28px; }
-    .booking-card h3 { font-family:var(--font-display); font-size:24px; color:var(--light-text); margin-bottom:8px; }
-    .booking-card p  { font-size:14px; color:var(--light-muted); margin-bottom:20px; line-height:1.7; }
-
-    @media(max-width:900px){ .week-grid{grid-template-columns:1fr 1fr}; .booking-grid{grid-template-columns:1fr} }
-    @media(max-width:560px){ .week-grid{grid-template-columns:1fr} }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/af-styles.css">
 </head>
 <body>
-
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="../index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:40px;width:auto;"></a>
-    <div class="nav-links">
-      <a href="about.html">About</a>
-      <a href="rates.html">Rates</a>
-      <a href="nutrition.html">Nutrition</a>
-      <a href="calendar.html" class="active">Calendar</a>
-      <a href="get-started.html" class="nav-cta">Get started</a>
+<nav class="navbar navbar-expand-lg af-nav sticky-top">
+  <div class="container">
+    <a class="navbar-brand p-0" href="../index.html"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" height="40"></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav gap-1 mt-2 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="rates.html">Rates</a></li>
+        <li class="nav-item"><a class="nav-link" href="nutrition.html">Nutrition</a></li>
+        <li class="nav-item"><a class="nav-link active" href="calendar.html">Calendar</a></li>
+        <li class="nav-item"><a class="nav-link" href="get-started.html">Get started</a></li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<header class="page-header">
+<header class="af-page-header">
   <div class="container">
-    <div class="tag">Schedule</div>
+    <span class="af-tag">Schedule</span>
     <h1>CLASS CALENDAR</h1>
     <p>Early risers only — classes run weekdays at 5:30am. Check below and book your spot.</p>
   </div>
 </header>
 
-<!-- CALENDAR EMBED (white) -->
-<section class="section" style="background:var(--light);">
+<!-- CALENDAR EMBED -->
+<section class="py-section bg-white">
   <div class="container">
-    <div class="calendar-note">
-      <div style="font-size:24px;">📅</div>
-      <p><strong>Add your booking calendar here.</strong> Paste the embed code from your booking tool (Calendly, Acuity, Google Calendar, etc.) into the placeholder below. Just drop the <code style="font-size:12px;color:var(--purple);">&lt;iframe&gt;</code> code in and you're done.</p>
+    <div class="af-cal-note d-flex gap-3 mb-4">
+      <span style="font-size:24px;flex-shrink:0;">📅</span>
+      <p class="af-body mb-0"><strong style="color:var(--text);">Add your booking calendar here.</strong> Paste the embed code from your booking tool (Calendly, Acuity, Google Calendar, etc.) into the placeholder below.</p>
     </div>
-    <div class="calendar-placeholder">
-      <div class="icon">🗓</div>
-      <h3>Live calendar goes here</h3>
-      <p>Replace this block with your calendar embed. Calendly's free tier gives you one event type and an easy copy-paste iframe.</p>
-      <a href="https://calendly.com" target="_blank" class="btn btn-primary">Try Calendly (free) →</a>
-      <div class="embed-code">
+    <div class="af-cal-placeholder">
+      <div style="font-size:48px;margin-bottom:16px;">🗓</div>
+      <h3 class="af-h2">Live calendar goes here</h3>
+      <p class="af-body mx-auto mb-4" style="max-width:480px;">Replace this block with your calendar embed. Calendly's free tier gives you one event type and an easy copy-paste iframe.</p>
+      <a href="https://calendly.com" target="_blank" class="btn-af-primary">Try Calendly (free) →</a>
+      <div class="af-embed-code mt-3 text-start">
         &lt;!-- Paste your embed code here --&gt;<br>
         &lt;!-- e.g. &lt;iframe src="https://calendly.com/yourname" ...&gt;&lt;/iframe&gt; --&gt;
       </div>
@@ -79,75 +52,64 @@
   </div>
 </section>
 
-<!-- WEEKLY SCHEDULE (soft) -->
-<section class="section" style="background:var(--light-soft);">
+<!-- WEEKLY SCHEDULE -->
+<section class="py-section af-soft">
   <div class="container">
-    <div class="tag">Weekly overview</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,48px);color:var(--light-text);margin-bottom:10px;">Typical week</h2>
-    <p style="color:var(--light-muted);font-size:15px;">Monday–Friday, 5:30–6:30am. Schedule may vary — check the calendar above.</p>
-    <div class="week-grid">
-      <div><div class="day-label">Monday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Strength &amp; Cardio</div></div></div>
-      <div><div class="day-label">Tuesday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Crossfit-style</div></div></div>
-      <div><div class="day-label">Wednesday</div><div class="day-event zumba"><div class="etime">Varies</div><div class="ename">Zumba® / Stretch n Flex</div></div></div>
-      <div><div class="day-label">Thursday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Large Circuit</div></div></div>
-      <div><div class="day-label">Friday</div><div class="day-event bootcamp"><div class="etime">5:30–6:30am</div><div class="ename">Tabata</div></div></div>
+    <span class="af-tag">Weekly overview</span>
+    <h2 class="af-h2">Typical week</h2>
+    <p class="af-body mb-5">Monday–Friday, 5:30–6:30am. Schedule may vary — check the calendar above.</p>
+    <div class="row g-3">
+      <div class="col-6 col-md">
+        <div class="af-day-label">Monday</div>
+        <div class="af-day-event bootcamp"><div class="af-etime">5:30–6:30am</div><div class="af-ename">Strength &amp; Cardio</div></div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="af-day-label">Tuesday</div>
+        <div class="af-day-event bootcamp"><div class="af-etime">5:30–6:30am</div><div class="af-ename">Crossfit-style</div></div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="af-day-label">Wednesday</div>
+        <div class="af-day-event zumba"><div class="af-etime">Varies</div><div class="af-ename">Zumba® / Stretch n Flex</div></div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="af-day-label">Thursday</div>
+        <div class="af-day-event bootcamp"><div class="af-etime">5:30–6:30am</div><div class="af-ename">Large Circuit</div></div>
+      </div>
+      <div class="col-6 col-md">
+        <div class="af-day-label">Friday</div>
+        <div class="af-day-event bootcamp"><div class="af-etime">5:30–6:30am</div><div class="af-ename">Tabata</div></div>
+      </div>
     </div>
-    <div class="legend">
-      <div class="legend-item"><span class="legend-dot" style="background:#60a5fa;"></span> Boot camp / Strength</div>
-      <div class="legend-item"><span class="legend-dot" style="background:var(--purple);"></span> Zumba® / Dance</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#34d399;"></span> Stretch n Flex</div>
+    <div class="d-flex flex-wrap gap-3 mt-4">
+      <span class="d-flex align-items-center gap-2 af-body" style="font-size:13px;"><span style="width:10px;height:10px;border-radius:50%;background:#60a5fa;display:inline-block;"></span>Boot camp / Strength</span>
+      <span class="d-flex align-items-center gap-2 af-body" style="font-size:13px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--purple);display:inline-block;"></span>Zumba® / Dance</span>
     </div>
   </div>
 </section>
 
-<!-- BOOKING (white) -->
-<section class="section" style="background:var(--light);">
+<!-- BOOKING -->
+<section class="py-section bg-white">
   <div class="container">
-    <div class="tag">Book a class</div>
-    <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,48px);color:var(--light-text);margin-bottom:10px;">How to join</h2>
-    <p style="color:var(--light-muted);font-size:15px;max-width:540px;">Two ways to train with Naarah — pick what works for you.</p>
-    <div class="booking-grid">
-      <div class="booking-card">
-        <h3>In-person · Southern MD</h3>
-        <p>Join Naarah and the Adyctive community in person. Contact us for the current location after signing up.</p>
-        <a href="get-started.html" class="btn btn-primary">Get location details</a>
-      </div>
-      <div class="booking-card">
-        <h3>Online · Zoom anywhere</h3>
-        <p>All classes are available live via Zoom. Get your link when you sign up and join from anywhere in the world.</p>
-        <a href="get-started.html" class="btn btn-primary">Get your Zoom link</a>
-      </div>
+    <span class="af-tag">Book a class</span>
+    <h2 class="af-h2">How to join</h2>
+    <p class="af-body mb-5" style="max-width:540px;">Two ways to train with Naarah — pick what works for you.</p>
+    <div class="row g-4">
+      <div class="col-md-6"><div class="af-card"><h3 class="af-h3">In-person · Southern MD</h3><p class="af-body flex-grow-1">Join Naarah and the Adyctive community in person. Contact us for the current location after signing up.</p><a href="get-started.html" class="btn-af-primary mt-3 d-inline-block">Get location details</a></div></div>
+      <div class="col-md-6"><div class="af-card"><h3 class="af-h3">Online · Zoom anywhere</h3><p class="af-body flex-grow-1">All classes are available live via Zoom. Get your link when you sign up and join from anywhere in the world.</p><a href="get-started.html" class="btn-af-primary mt-3 d-inline-block">Get your Zoom link</a></div></div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
+<footer class="af-footer">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="../index.html" class="nav-logo"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" style="height:36px;width:auto;"></a>
-        <p>Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="about.html">About Naarah</a><a href="rates.html">Rates &amp; Services</a>
-        <a href="nutrition.html">Nutrition</a><a href="calendar.html">Class Calendar</a>
-        <a href="get-started.html">Get Started</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="https://www.instagram.com/adyctivefitness/" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/adyctivefitness/" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/@adyctivefitness" target="_blank">YouTube</a>
-        <a href="mailto:info@adyctivefitness.com">Email us</a>
-      </div>
+    <div class="row g-4 pb-4 border-bottom" style="border-color:rgba(255,255,255,0.1)!important;">
+      <div class="col-lg-5"><a href="../index.html" class="d-inline-block mb-3"><img src="https://www.adyctivefitness.com/wp-content/themes/bootscore-5-child/img/logo/af-logo.png" alt="Adyctive Fitness" height="36"></a><p class="af-footer-text">Fierce fitness with a flair. AFAA® certified personal trainer &amp; Zumba® professional based in Southern Maryland.</p></div>
+      <div class="col-lg-4 col-6"><div class="row g-0"><div class="col-6"><a href="about.html" class="af-foot-link">About</a><a href="rates.html" class="af-foot-link">Rates &amp; Services</a><a href="nutrition.html" class="af-foot-link">Nutrition</a></div><div class="col-6"><a href="calendar.html" class="af-foot-link">Calendar</a><a href="get-started.html" class="af-foot-link">Get Started</a></div></div></div>
+      <div class="col-lg-3 col-6"><p class="af-footer-heading mb-3">Connect</p><div class="af-social d-flex gap-2"><a href="https://www.instagram.com/adyctivefitness/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="https://www.facebook.com/adyctivefitness/" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="https://www.youtube.com/@adyctivefitness" target="_blank" aria-label="YouTube"><i class="bi bi-youtube"></i></a></div></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Adyctive Fitness LLC · Southern Maryland</p>
-      <p>#GetAdycted 💙</p>
-    </div>
+    <div class="pt-3"><p class="af-footer-copy">© 2026 Adyctive Fitness LLC · Southern Maryland</p></div>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
