@@ -1,0 +1,312 @@
+/* ============================================================
+   ADYCTIVE FITNESS — Shared Stylesheet (Bootstrap 5 + custom)
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+/* ── TOKENS ── */
+:root {
+  --purple:     #ae32fe;
+  --purple-dim: rgba(174,50,254,0.11);
+  --dark:       #0a0a0a;
+  --white:      #ffffff;
+  --soft:       #f5f0ff;
+  --text:       #1a1a2e;
+  --muted:      #6b6880;
+  --border:     #e0d6f5;
+  --card-b:     #e8e0f5;
+}
+html, body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  color: var(--text);
+  background: #fff;
+}
+.py-section { padding-top: 80px; padding-bottom: 80px; }
+.af-soft    { background: var(--soft); }
+
+/* ── NAV ── */
+.af-nav {
+  background: rgba(10,10,10,0.96) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  min-height: 66px;
+}
+.af-nav .navbar-brand img { height: 40px; }
+.af-nav .nav-link {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65) !important;
+  padding: 8px 15px !important;
+  border-radius: 6px;
+  transition: background .18s, color .18s;
+}
+.af-nav .nav-link:hover,
+.af-nav .nav-link.active {
+  background: var(--purple) !important;
+  color: #fff !important;
+}
+.navbar-toggler       { border-color: rgba(255,255,255,0.25); }
+.navbar-toggler-icon  { filter: invert(1); }
+@media (max-width:991px) {
+  .navbar-collapse { background:rgba(10,10,10,0.97); padding:12px 8px; border-radius:8px; margin-top:6px; }
+}
+
+/* ── PAGE HEADER (inner pages) ── */
+.af-page-header {
+  background: var(--dark);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 64px 0 52px;
+}
+.af-page-header .af-tag { color: var(--purple); }
+.af-page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px,7vw,80px);
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.af-page-header p { font-size: 16px; color: rgba(255,255,255,0.55); max-width: 520px; }
+
+/* ── BUTTONS ── */
+.btn-af-primary {
+  background: var(--purple); color: #fff; border: none;
+  padding: 11px 26px; font-size: 15px; font-weight: 500; border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(174,50,254,0.35);
+  transition: background .2s, box-shadow .2s, transform .15s;
+  text-decoration: none; display: inline-block;
+}
+.btn-af-primary:hover { background:#c84fff; color:#fff; box-shadow:0 6px 22px rgba(174,50,254,0.55); transform:translateY(-2px); }
+
+.btn-af-ghost {
+  background: transparent; color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 11px 26px; font-size: 15px; font-weight: 500; border-radius: 6px;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+  text-decoration: none; display: inline-block;
+}
+.btn-af-ghost:hover { background:var(--purple); color:#fff; border-color:var(--purple); box-shadow:0 4px 16px rgba(174,50,254,0.4); transform:translateY(-2px); }
+
+.btn-af-outline {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border);
+  padding: 11px 26px; font-size: 15px; font-weight: 500; border-radius: 6px;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+  text-decoration: none; display: inline-block;
+}
+.btn-af-outline:hover { background:var(--purple); color:#fff; border-color:var(--purple); box-shadow:0 4px 16px rgba(174,50,254,0.3); transform:translateY(-2px); }
+
+.btn-af-cta {
+  background: var(--purple); color: #fff; border: none;
+  padding: 14px 36px; font-size: 16px; font-weight: 500;
+  border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(174,50,254,0.35);
+  transition: background .2s, box-shadow .2s, transform .15s;
+  text-decoration: none; display: inline-block;
+}
+.btn-af-cta:hover { background:#c84fff; color:#fff; box-shadow:0 6px 24px rgba(174,50,254,0.55); transform:translateY(-2px); }
+
+/* ── TYPOGRAPHY ── */
+.af-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 10px;
+}
+.af-h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(34px,5vw,52px); line-height: 1.05; color: var(--text); margin-bottom: 16px;
+}
+.af-h3    { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--text); margin-bottom:10px; }
+.af-body  { font-size: 16px; color: var(--muted); line-height: 1.75; }
+.af-eyebrow {
+  font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase;
+  color:var(--purple); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+}
+.af-eyebrow::before { content:''; width:22px; height:2px; background:var(--purple); display:block; flex-shrink:0; }
+
+/* ── STATS BAR ── */
+.af-stats { background: var(--purple); }
+.af-stats-inner { display:table; width:100%; table-layout:fixed; }
+.af-stat-cell {
+  display:table-cell; width:25%; padding:22px 16px;
+  text-align:center; border-right:1px solid rgba(255,255,255,0.2); vertical-align:middle;
+}
+.af-stat-cell:last-child { border-right:none; }
+.af-stat-num   { font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; line-height:1; }
+.af-stat-label { font-size:13px; color:rgba(255,255,255,0.82); margin-top:3px; }
+
+/* ── CARDS ── */
+.af-card {
+  background:#fff; border:1px solid var(--card-b); border-radius:14px;
+  padding:28px 24px; height:100%; display:flex; flex-direction:column;
+  transition:border-color .22s, transform .2s, box-shadow .2s;
+}
+.af-card:hover { border-color:rgba(174,50,254,0.4); transform:translateY(-3px); box-shadow:0 8px 28px rgba(174,50,254,0.10); }
+.af-card-icon { font-size:28px; margin-bottom:14px; }
+.af-pill {
+  display:inline-block; align-self:flex-start; margin-top:16px;
+  font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
+  color:var(--purple); background:var(--purple-dim); padding:4px 12px; border-radius:20px;
+}
+
+/* ── TESTIMONIALS ── */
+.af-testi-card {
+  background:#fff; border:1px solid var(--card-b); border-radius:14px;
+  padding:26px; height:100%; display:flex; flex-direction:column;
+}
+.af-stars       { color:var(--purple); font-size:15px; margin-bottom:10px; }
+.af-testi-quote { font-size:15px; color:var(--muted); line-height:1.75; font-style:italic; flex-grow:1; margin-bottom:14px; }
+.af-testi-name  { font-size:14px; font-weight:500; color:var(--text); }
+.af-testi-role  { font-size:12px; color:var(--muted); }
+
+/* ── CTA BAND ── */
+.af-cta {
+  background:var(--dark); border:1px solid rgba(174,50,254,0.22);
+  border-radius:16px; padding:52px; position:relative; overflow:hidden;
+}
+.af-cta::before {
+  content:''; position:absolute; top:-80px; right:-60px; width:360px; height:360px;
+  background:radial-gradient(circle,rgba(174,50,254,0.18) 0%,transparent 70%); pointer-events:none;
+}
+.af-cta-h2  { font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,4vw,46px); color:#fff; line-height:1.05; margin-bottom:8px; position:relative; }
+.af-cta-sub { font-size:16px; color:rgba(255,255,255,0.58); margin:0; position:relative; }
+
+/* ── ABOUT IMAGE ── */
+.af-about-img { height:420px; border-radius:14px; overflow:hidden; border:1px solid var(--border); }
+.af-about-img img { width:100%; height:100%; object-fit:cover; object-position:top; }
+
+/* ── CRED LIST ── */
+.af-cred-list { list-style:none; padding:0; margin:0; }
+.af-cred-list li { font-size:14px; color:var(--muted); padding:7px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+.af-cred-list li:last-child { border-bottom:none; }
+.af-cred-list li::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--purple); flex-shrink:0; }
+
+/* ── PHILOSOPHY STRIP ── */
+.af-philosophy { background:var(--purple); padding:52px 0; }
+.af-philosophy blockquote { font-family:'Bebas Neue',sans-serif; font-size:clamp(26px,4vw,42px); line-height:1.1; color:#fff; max-width:820px; margin:0 auto; text-align:center; }
+.af-philosophy cite { display:block; font-family:'DM Sans',sans-serif; font-size:13px; font-style:normal; color:rgba(255,255,255,0.65); margin-top:16px; letter-spacing:1px; text-transform:uppercase; }
+
+/* ── PRICING CARDS ── */
+.af-price-card {
+  background:#fff; border:1px solid var(--card-b); border-radius:14px;
+  padding:32px 28px; height:100%; display:flex; flex-direction:column;
+  transition:border-color .2s, box-shadow .2s; position:relative;
+}
+.af-price-card:hover { border-color:rgba(174,50,254,0.35); box-shadow:0 4px 24px rgba(174,50,254,0.08); }
+.af-price-card.featured { border:2px solid var(--purple); }
+.featured-badge {
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:var(--purple); color:#fff;
+  font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
+  padding:4px 16px; border-radius:20px; white-space:nowrap;
+}
+.af-price-num { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--purple); line-height:1; margin-bottom:4px; }
+.af-price-unit { font-size:12px; color:var(--muted); margin-bottom:18px; }
+.af-price-features { list-style:none; padding:0; margin-bottom:24px; flex-grow:1; }
+.af-price-features li { font-size:14px; color:var(--text); padding:6px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+.af-price-features li:last-child { border-bottom:none; }
+.af-price-features li::before { content:'✓'; color:var(--purple); font-size:12px; flex-shrink:0; }
+
+/* ── SCHEDULE TABLE ── */
+.af-table { width:100%; border-collapse:collapse; }
+.af-table th { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-align:left; padding:12px 16px; border-bottom:1px solid var(--border); }
+.af-table td { font-size:15px; color:var(--text); padding:16px; border-bottom:1px solid rgba(0,0,0,0.05); }
+.af-table tr:last-child td { border-bottom:none; }
+.af-table tr:hover td { background:rgba(174,50,254,0.04); }
+.af-pill-purple { background:var(--purple-dim); color:var(--purple); font-size:11px; font-weight:500; text-transform:uppercase; padding:3px 10px; border-radius:20px; }
+.af-pill-gray   { background:rgba(0,0,0,0.06); color:var(--muted); font-size:11px; font-weight:500; text-transform:uppercase; padding:3px 10px; border-radius:20px; }
+
+/* ── FOOD GROUPS ── */
+.af-food-group { background:#fff; border:1px solid var(--card-b); border-radius:14px; padding:24px 20px; }
+.af-food-list  { list-style:none; padding:0; margin:0; }
+.af-food-list li { font-size:14px; color:var(--muted); padding:5px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+.af-food-list li:last-child { border-bottom:none; }
+.af-food-list li::before { content:'·'; color:var(--purple); font-size:16px; }
+.af-disclaimer { background:rgba(174,50,254,0.06); border:1px solid rgba(174,50,254,0.18); border-radius:10px; padding:16px 20px; font-size:13px; color:var(--muted); }
+
+/* ── MACRO CARDS ── */
+.af-macro-card { background:#fff; border:1px solid var(--card-b); border-radius:14px; padding:28px 24px; }
+.af-macro-card.carbs   { border-top:4px solid var(--purple); }
+.af-macro-card.protein { border-top:4px solid #3b82f6; }
+.af-macro-card.fat     { border-top:4px solid #f59e0b; }
+.af-macro-pct { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; margin-bottom:6px; }
+.af-macro-card.carbs   .af-macro-pct { color:var(--purple); }
+.af-macro-card.protein .af-macro-pct { color:#3b82f6; }
+.af-macro-card.fat     .af-macro-pct { color:#f59e0b; }
+
+/* ── NO LIST ── */
+.af-no-item { background:#fff; border:1px solid var(--card-b); border-radius:10px; padding:14px 12px; text-align:center; font-size:13px; color:var(--muted); }
+.af-no-item::before { display:block; font-size:18px; margin-bottom:6px; content:'✗'; color:rgba(174,50,254,0.45); }
+
+/* ── TOOLS ── */
+.af-tool-card { background:#fff; border:1px solid var(--card-b); border-radius:14px; padding:28px 24px; }
+
+/* ── FORM ── */
+.af-form-wrap { background:#fff; border:1px solid var(--card-b); border-radius:16px; padding:36px 32px; box-shadow:0 4px 32px rgba(174,50,254,0.07); }
+.af-form-label { font-size:12px; font-weight:500; letter-spacing:.5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.af-form-control {
+  width:100%; background:var(--soft); border:1px solid var(--border);
+  border-radius:6px; padding:11px 14px; font-family:'DM Sans',sans-serif;
+  font-size:15px; color:var(--text); transition:border-color .2s;
+}
+.af-form-control:focus { outline:none; border-color:var(--purple); background:#fff; box-shadow:none; }
+.af-form-control::placeholder { color:var(--muted); opacity:.6; }
+
+/* ── CRED CHECK CARDS ── */
+.af-cred-card { background:#fff; border:1px solid var(--card-b); border-radius:10px; padding:20px 18px; display:flex; align-items:flex-start; gap:12px; }
+.af-cred-check { width:28px; height:28px; border-radius:50%; background:var(--purple-dim); display:flex; align-items:center; justify-content:center; color:var(--purple); font-size:13px; flex-shrink:0; margin-top:2px; }
+
+/* ── FAQ ── */
+.af-faq-item  { border-bottom:1px solid var(--border); padding:20px 0; }
+.af-faq-item:last-child { border-bottom:none; }
+.af-faq-q     { font-size:15px; font-weight:500; color:var(--text); margin-bottom:8px; }
+.af-faq-a     { font-size:15px; color:var(--muted); line-height:1.7; margin:0; }
+
+/* ── CALENDAR PLACEHOLDER ── */
+.af-cal-placeholder { background:var(--soft); border:2px dashed rgba(174,50,254,0.3); border-radius:14px; padding:80px 40px; text-align:center; }
+.af-cal-note { background:var(--soft); border:1px solid var(--border); border-radius:12px; padding:20px 24px; }
+.af-embed-code { background:rgba(174,50,254,0.06); border:1px solid rgba(174,50,254,0.15); border-radius:8px; padding:16px 20px; font-family:monospace; font-size:12px; color:var(--purple); margin-top:16px; }
+
+/* ── DAY EVENTS (calendar) ── */
+.af-day-label { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; text-align:center; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.af-day-event { background:#fff; border:1px solid var(--card-b); border-radius:8px; padding:12px; margin-bottom:8px; }
+.af-day-event.zumba    { border-left:3px solid var(--purple); }
+.af-day-event.bootcamp { border-left:3px solid #60a5fa; }
+.af-etime { font-size:11px; color:var(--muted); margin-bottom:4px; }
+.af-ename { font-size:13px; font-weight:500; color:var(--text); line-height:1.4; }
+
+/* ── FOOTER ── */
+.af-footer { background:var(--dark); border-top:1px solid rgba(255,255,255,0.08); padding:52px 0 32px; }
+.af-footer-text    { font-size:14px; color:rgba(255,255,255,0.52); line-height:1.7; max-width:280px; }
+.af-footer-heading { font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:14px; }
+.af-foot-link { display:block; font-size:15px; color:rgba(255,255,255,0.58); padding:4px 0; text-decoration:none; transition:color .18s; }
+.af-foot-link:hover { color:#fff; }
+.af-footer-copy { font-size:13px; color:rgba(255,255,255,0.25); margin:0; }
+.af-social a {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:32px; height:32px; border-radius:6px;
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.10);
+  color:rgba(255,255,255,0.65); font-size:15px; text-decoration:none;
+  transition:background .18s, color .18s, border-color .18s;
+}
+.af-social a:hover { background:var(--purple); color:#fff; border-color:var(--purple); }
+
+/* ── LIVE BADGE ── */
+.af-live-badge {
+  position:absolute; bottom:20px; right:24px; z-index:3;
+  background:rgba(10,10,10,0.88); backdrop-filter:blur(8px);
+  border:1px solid rgba(174,50,254,0.28); border-radius:10px;
+  padding:10px 16px; display:flex; align-items:center; gap:10px;
+}
+.af-live-dot  { width:9px; height:9px; border-radius:50%; background:#22c55e; box-shadow:0 0 7px rgba(34,197,94,0.6); flex-shrink:0; }
+.af-live-text { font-size:13px; font-weight:500; color:#fff; line-height:1.3; }
+.af-live-sub  { font-size:11px; color:rgba(255,255,255,0.5); line-height:1.3; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:767px) {
+  .af-about-img  { height:260px; }
+  .af-cta        { padding:36px 28px; }
+  .af-stats-inner { display:block; }
+  .af-stat-cell  { display:block; width:100%; border-right:none; border-bottom:1px solid rgba(255,255,255,0.15); }
+  .af-stat-cell:last-child { border-bottom:none; }
+  .af-live-badge { display:none !important; }
+  .af-page-header { padding:44px 0 36px; }
+}
