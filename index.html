@@ -37,11 +37,15 @@
         rgba(10,10,10,0.10) 100%
       );
     }
-    /* card overlay layer */
+    /* card overlay layer — below controls */
     .af-slide-body {
-      position:absolute; inset:0; z-index:2;
+      position:absolute; inset:0; z-index:3;
       display:flex; align-items:center;
+      pointer-events: none; /* let clicks pass through to controls behind */
     }
+    /* re-enable pointer events on the card itself so buttons inside work */
+    .af-slide-body .af-hero-card,
+    .af-slide-body .af-hero-card * { pointer-events: auto; }
     /* positional helpers — set via data-card-align on carousel-item */
     .af-carousel .carousel-item[data-card-align="left"]   .af-slide-body { justify-content:flex-start; }
     .af-carousel .carousel-item[data-card-align="right"]  .af-slide-body { justify-content:flex-end; }
@@ -65,20 +69,25 @@
     .af-hero-h1 .accent { color: var(--purple); }
     .af-hero-sub { font-size:15px; color:rgba(255,255,255,0.68); line-height:1.72; margin-bottom:28px; }
 
-    /* carousel controls — purple */
+    /* carousel controls — purple, must be above slide overlay (z-index:2) */
     .af-carousel .carousel-control-prev,
     .af-carousel .carousel-control-next {
       width:48px; height:48px; border-radius:50%;
       background:rgba(174,50,254,0.75);
       top:50%; transform:translateY(-50%);
       opacity:1; margin:0 12px;
+      z-index: 10;        /* above .af-slide-body z-index:2 */
+      position: absolute; /* ensure stacking context applies */
     }
     .af-carousel .carousel-control-prev { left:12px; }
     .af-carousel .carousel-control-next { right:12px; }
     .af-carousel .carousel-control-prev-icon,
     .af-carousel .carousel-control-next-icon { width:20px; height:20px; }
 
-    /* indicators */
+    /* indicators — also above the overlay */
+    .af-carousel .carousel-indicators {
+      z-index: 10;
+    }
     .af-carousel .carousel-indicators [data-bs-target] {
       width:10px; height:10px; border-radius:50%;
       background:rgba(255,255,255,0.45); border:none;
@@ -142,8 +151,8 @@
   <div class="carousel-inner">
 
     <!-- ── SLIDE 1 — card LEFT ── -->
-    <div class="carousel-item active" data-card-align="left">
-      <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/featurette-2.svg" alt="Adyctive Fitness class">
+    <div class="carousel-item active" data-card-align="right">
+      <img src="https://adyctivefitness.com/wp-content/themes/bootscore-5-child/img/carousel-image-2.svg" alt="Adyctive Fitness class">
       <div class="af-slide-body">
         <div class="container">
           <div class="af-hero-card">
